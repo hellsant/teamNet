@@ -1,0 +1,10 @@
+D:\jala\TeamNet\TeamNet\DataLoader\bin\Debug\DataLoader.exe
+D:\jala\TeamNet\TeamNet\DataLoader\bin\Debug\DataLoader.pdb
+D:\jala\TeamNet\TeamNet\DataLoader\bin\Debug\Excel.dll
+D:\jala\TeamNet\TeamNet\DataLoader\bin\Debug\Orient.Client.dll
+D:\jala\TeamNet\TeamNet\DataLoader\bin\Debug\TeamNetDB.dll
+D:\jala\TeamNet\TeamNet\DataLoader\bin\Debug\Orient.Client.pdb
+D:\jala\TeamNet\TeamNet\DataLoader\bin\Debug\TeamNetDB.pdb
+D:\jala\TeamNet\TeamNet\DataLoader\obj\Debug\DataLoader.csprojResolveAssemblyReference.cache
+D:\jala\TeamNet\TeamNet\DataLoader\obj\Debug\DataLoader.exe
+D:\jala\TeamNet\TeamNet\DataLoader\obj\Debug\DataLoader.pdb

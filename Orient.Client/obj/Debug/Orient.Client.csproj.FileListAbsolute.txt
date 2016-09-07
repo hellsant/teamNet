@@ -1,0 +1,5 @@
+D:\jala\TeamNet\TeamNet\Orient.Client\bin\Debug\Orient.Client.dll
+D:\jala\TeamNet\TeamNet\Orient.Client\bin\Debug\Orient.Client.pdb
+D:\jala\TeamNet\TeamNet\Orient.Client\obj\Debug\Orient.Client.csprojResolveAssemblyReference.cache
+D:\jala\TeamNet\TeamNet\Orient.Client\obj\Debug\Orient.Client.dll
+D:\jala\TeamNet\TeamNet\Orient.Client\obj\Debug\Orient.Client.pdb

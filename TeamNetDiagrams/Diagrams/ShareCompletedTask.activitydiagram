@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="53d73c0b-caf9-4b45-80dd-1b4d78c207ee" name="ShareCompletedTask" linkedPackageId="c6c2e620-7bfd-4d67-b5c3-fde00996b720" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="31cf696a-c740-4d32-aef6-eb6d779dae31">
+      <profileInstance Id="d7a4ce28-b663-42a0-9cf9-00b6587eb67a" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="6acff002-c206-4855-9ab3-bda61c23d5d0">
+      <profileInstance Id="83ca667a-484f-41ee-b7a1-898172b3bc78" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="d04448f5-5bd9-4c4c-b551-d632f5815a8b" name="ShareCompletedTask" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="79fcaa25-8712-4777-ba80-844a8824bf4b" />
+        <nodes>
+          <initialNode Id="9c0b1ac4-a097-4938-b9a3-b5e2a1177f46" name="Initial1" isLeaf="false">
+            <elementDefinition Id="d6a15145-7cd4-4a35-b35b-e5e8445a856b" />
+            <flowNodeTargets>
+              <controlFlow Id="07ff62e5-a60a-4a08-b288-ce9ffa3b7fcc" isLeaf="false">
+                <opaqueActionMoniker Id="bc79b443-cf72-406d-8a44-8e446d6a1c36" LastKnownName="User presses share button" />
+                <elementDefinition Id="6133244f-0721-48aa-9293-879ea8a65b22" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="bc79b443-cf72-406d-8a44-8e446d6a1c36" name="User presses share button" isLeaf="false">
+            <elementDefinition Id="779ca6ec-037d-4e87-ac52-ba92ad0fa6e3" />
+            <flowNodeTargets>
+              <controlFlow Id="d25151d4-750d-44aa-b815-6264a2518a30" isLeaf="false">
+                <opaqueActionMoniker Id="d3eed08f-79a5-4aff-a8ba-83ea650b0be7" LastKnownName="It appears a modal dialog with share options" />
+                <elementDefinition Id="9d330eaa-23f7-46d8-92b8-7d769abee1ef" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="d3eed08f-79a5-4aff-a8ba-83ea650b0be7" name="It appears a modal dialog with share options" isLeaf="false">
+            <elementDefinition Id="98b6c4b5-9602-4acf-a057-17a8b15a9be9" />
+            <flowNodeTargets>
+              <controlFlow Id="ee602c3b-24d5-4b67-9e99-83f2d4d9e9cb" isLeaf="false">
+                <decisionNodeMoniker Id="e4e1280b-2011-4129-afe0-c7f3136dee45" LastKnownName="Decision1" />
+                <elementDefinition Id="41b82119-0f38-4628-af16-69af00bc8b5c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="e4e1280b-2011-4129-afe0-c7f3136dee45" name="Decision1" isLeaf="false">
+            <elementDefinition Id="546e3c57-3050-4863-932c-36aa7492dd2b" />
+            <flowNodeTargets>
+              <controlFlow Id="527ba1a3-56fe-4e77-9a94-efda1366008b" guard="User wants to share it with groups" isLeaf="false">
+                <opaqueActionMoniker Id="176b64aa-72a1-49e1-94bd-f8a656534cd3" LastKnownName="Completed task is shared with selected groups" />
+                <elementDefinition Id="593f0855-2abc-489c-851b-ec473512dfa5" />
+              </controlFlow>
+              <controlFlow Id="072f5e12-c7b5-487f-a373-1e5a476735af" isLeaf="false">
+                <opaqueActionMoniker Id="c077e48c-457b-4e5f-ac33-13409de2fe1f" LastKnownName="Completed task is published on user's personal wall " />
+                <elementDefinition Id="3e0f36a4-468b-4fef-9d7a-2d78be46c0d6" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="176b64aa-72a1-49e1-94bd-f8a656534cd3" name="Completed task is shared with selected groups" isLeaf="false">
+            <elementDefinition Id="43a010f2-f724-46a0-9193-55ac751375dd" />
+            <flowNodeTargets>
+              <controlFlow Id="6976cbfa-4d77-412a-82fd-fc46572cacde" isLeaf="false">
+                <opaqueActionMoniker Id="c077e48c-457b-4e5f-ac33-13409de2fe1f" LastKnownName="Completed task is published on user's personal wall " />
+                <elementDefinition Id="246ad7e5-0a6e-4f66-9688-ac75dd7ab494" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="c077e48c-457b-4e5f-ac33-13409de2fe1f" name="Completed task is published on user's personal wall " isLeaf="false">
+            <elementDefinition Id="7eaa278b-7b01-4012-82fb-6357cdeb954c" />
+            <flowNodeTargets>
+              <controlFlow Id="3b652c29-26bf-406d-a36e-36639b6f6b34" isLeaf="false">
+                <activityFinalNodeMoniker Id="1486eb0f-a6c3-4b95-a05b-fdd2e2b96fa6" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="621af4ff-41e4-4fa4-ae7a-e8cf6dabb577" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="1486eb0f-a6c3-4b95-a05b-fdd2e2b96fa6" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="9a96e669-d47b-477e-a965-88c33d9c32fb" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="c6c2e620-7bfd-4d67-b5c3-fde00996b720" name="TeamNetDiagrams">
+    <elementDefinition Id="6a1b7de6-a8a3-46d9-a656-541831601aab" />
+  </package>
+</activityRootModel>

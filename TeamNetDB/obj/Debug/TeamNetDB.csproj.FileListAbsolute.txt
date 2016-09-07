@@ -1,0 +1,7 @@
+D:\jala\TeamNet\TeamNet\TeamNetDB\bin\Debug\TeamNetDB.dll
+D:\jala\TeamNet\TeamNet\TeamNetDB\bin\Debug\TeamNetDB.pdb
+D:\jala\TeamNet\TeamNet\TeamNetDB\bin\Debug\Orient.Client.dll
+D:\jala\TeamNet\TeamNet\TeamNetDB\bin\Debug\Orient.Client.pdb
+D:\jala\TeamNet\TeamNet\TeamNetDB\obj\Debug\TeamNetDB.csprojResolveAssemblyReference.cache
+D:\jala\TeamNet\TeamNet\TeamNetDB\obj\Debug\TeamNetDB.dll
+D:\jala\TeamNet\TeamNet\TeamNetDB\obj\Debug\TeamNetDB.pdb

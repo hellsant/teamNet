@@ -1,0 +1,93 @@
+.img-size {
+	width: 25px;
+	height: 25px;
+  margin: 3px 0px 0px 3px;
+}
+
+.container-size {
+	padding-left: 5px;
+	width: 70%;
+}
+
+.pagger-border {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.border-suggestion {
+  background-color: #fafafa;
+	margin: 0px 0px 10px 0px;
+}
+
+.body-text {
+  margin: 2px 0px 4px 0px;
+}
+
+.frame-size {
+  padding: 2px 4px 2px 5px;
+}
+
+.frame-color-4 {
+  background-color: #428bca;
+}
+
+.frame-color-3 {
+  background-color: #5cb85c;
+}
+
+.frame-color-2 {
+  background-color: #5bc0de;
+}
+
+.frame-color-1 {
+  background-color: #f0ad4e;
+}
+
+.frame-color-0 {
+  background-color: #d9534f;
+}
+
+.form-horizontal label {
+  font-size: 95%;
+  padding-right: 10px;
+}
+
+.form-horizontal div {
+  padding-left: 0px;
+}
+
+#clear-padding {
+  padding-left: 0px;
+}
+
+.size-div {
+  width: auto;
+  margin: 0 auto;
+}
+
+.margin {
+  padding-left: 15px;
+}
+
+div.form-group.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.requestForm {
+ color: #088A08;
+}
+
+a.dropdown-toggle {
+    width: 93% !important;
+}
+
+div.dropdown-menu {
+    min-width: 97% !important;
+}
+
+div.custom-select-search {
+    padding: 0 1px !important;
+}

@@ -1,0 +1,79 @@
+﻿<div>
+    <div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Task Information</h4>
+            </div>
+            <div class="modal-body">
+                <form name="taskForm">
+                    <ng-form name="taskDialog" class="form-horizontal" novalidate role="form" style="width: 100%">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Name*</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="task.name" ng-required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Description</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" style="height: 100px" ng-model="task.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Initial Date</label>
+                            <div class="col-md-7">
+                                <input class="form-control" type="date" ng-model="task.initialDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Final Date</label>
+                            <div class="col-md-7">
+                                <input class="form-control" type="date" ng-model="task.endDate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">360 Point</label>
+                            <div class="col-md-8">
+                                <label class="control-label">{{ pointname }}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Reviewer</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" ng-model="task.reviewer">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Result Score</label>
+                            <div class="col-md-3">
+                                <label class="control-label">{{ resultScore }}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Expected Score</label>
+                            <div class="col-md-3">
+                                <label class="control-label">{{ expectedScore }}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Final Product</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="task.finalProduct">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Score</label>
+                            <div class="col-md-4">
+                                <input class="form-control" min="1" max="5" type="number" ng-model="task.score">
+                            </div>
+                        </div>
+                    </ng-form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                <button type="submit" class="btn btn-primary" ng-click="create()" ng-disabled="taskDialog.name.$error.required">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

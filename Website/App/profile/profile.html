@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="TeamNet">
+<head>
+
+    <!-- start: Meta -->
+    <meta charset="utf-8" />
+    <title>Profile</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="keyword" content="" />
+    <!-- end: Meta -->
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- end: Mobile Specific -->
+    <!-- start: CSS -->
+    <link href="../../Styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Styles/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="../../Styles/style.min.css" rel="stylesheet" />
+    <link href="../../Styles/style-responsive.min.css" rel="stylesheet" />
+    <link href="../../Styles/retina.css" rel="stylesheet" />
+    <link href="../../Styles/feed.css" rel="stylesheet" />
+    <link href="../../Styles/collapsible-list.css" rel="stylesheet" />
+    <link href="../../Styles/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../Styles/filter.css" rel="stylesheet" />
+    <link href="../../css/tab-style.css" rel="stylesheet" />
+    <link href="../../css/suggestion.css" rel="stylesheet" />
+    <!-- end: CSS -->
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link id="ie-style" href="css/ie.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE 9]>
+        <link id="ie9style" href="css/ie9.css" rel="stylesheet">
+    <![endif]-->
+    <!-- start: Favicon and Touch Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+    <link rel="shortcut icon" href="ico/favicon.png" />
+    <!-- end: Favicon and Touch Icons -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body ng-controller="ProfileCtrl">
+    <!-- start: Header -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a id="main-menu-toggle" class="hidden-phone open"><i class="icon-reorder"></i></a>
+                <div class="row-fluid">
+                    <a class="brand span2" href="/index.html"><span>{{config.VIEW.TITLE}}</span></a>
+                </div>
+                <!-- start: Header Menu -->
+                <div class="nav-no-collapse header-nav">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
+                                <div class="avatar"><img ng-src="{{config.VIEW.AVATAR_SRC}}" alt="Avatar" /></div>
+                                <div class="user">
+                                    <span class="name">{{username}} {{lastname}}</span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-menu-title">
+                                </li>
+                                <li><a href="profile.html"><i class="icon-user"></i> Profile</a></li>
+                                <li><a href="../login/login.html"><i class="icon-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                        <!-- end: User Dropdown -->
+                    </ul>
+                </div>
+                <!-- end: Header Menu -->
+            </div>
+        </div>
+    </div>
+    <!-- start: Header -->
+    <div class="container-fluid-full">
+        <div class="row-fluid">
+            <!-- start: Main Menu -->
+            <div id="sidebar-left" class="span2">
+                <div class="nav-collapse sidebar-nav">
+                    <ul class="nav nav-tabs nav-stacked main-menu">
+                        <li ng-repeat="menu in menus">
+                            <a ng-href="{{menu.href}}"><i class="{{menu.icon}}"></i><span class="hidden-tablet"> {{menu.title}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end: Main Menu -->
+            <!-- start: Content -->
+
+            <div id="content" class="span10">
+                <div class="row-fluid">
+                    <div class="container-user">
+                        <img class="img-circle profile-picture" src="/img/default_image.jpg" alt="" />
+                        <h1 class="full-name">{{currentProfileName}} {{currentProfileLastname}}</h1>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="cd-tabs">
+                        <li ng-class="{'cd-tabs-select':tab=='wall'}" ng-click="tab='wall'">
+                            <a href=""><span class="glyphicon glyphicon-th"></span> Wall</a>
+                        </li>
+                        <li ng-class="{'cd-tabs-select':tab=='work'}" ng-click="tab='work'">
+                            <a href=""><span class=" glyphicon glyphicon-briefcase"></span> Work</a>
+                        </li>
+                        <li ng-class="{'cd-tabs-select':tab=='results'}" ng-click="tab='results'">
+                            <a href=""><span class=" glyphicon glyphicon-stats"></span> Results</a>
+                        </li>
+                    </ul> <!-- cd-tabs-navigation -->
+                </div>
+                <!-- Start: Wall panel -->
+                <div class="cd-tabs-content">
+                    <div class="social-feed-container" ng-show="tab=='wall'">
+                        <div class="social-feed-element" ng-repeat="publication in publications">
+                            <div class="content">
+                                <a class="pull-left" href="#" target="_blank">
+                                    <img class="media-object" src="/img/default_image.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <p>
+                                        <span class="author-title"> {{publication.publicator}} </span>
+                                        <span class="muted pull-right"> {{publication.date}} </span>
+                                    </p> <div class="text-wrapper">
+                                        <p class="social-feed-text"> {{publication.comment}} </p>
+                                        <hr />
+                                        <p class="social-feed-text">
+                                            Attachements:
+                                            <div ng-repeat="link in publication.taskLinks">
+                                                <a href="#"> {{link}} </a>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End: Wall panel -->
+                    <!-- Start: Work panel-->
+                    <div ng-show="tab=='work'" ng-controller="WorkCtrl">
+                        <div class="box span4" ontablet="span4" ondesktop="span4">
+                            <div class="box-header">
+                                <h2><i class="icon-list"></i>{{config.VIEW.FIRST_PANEL_TITLE}}</h2>
+                                <div class="box-icon">
+                                    <a href="#" ng-click="createTask()"><i class="icon-plus"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content clearfix">
+                                <div class="dd" id="nestable">
+                                    <ol class="dd-list">
+                                        <li class="dd-item" ng-repeat="competency in competencies">
+                                            <div class="dd-handle" ng-click="competency.expanded=!competency.expanded"><span ng-show="competency.tasks.length>0" ng-class="{'blue glyphicon glyphicon-plus-sign list-icon': !competency.expanded, 'red glyphicon glyphicon-minus-sign list-icon': competency.expanded}"></span> {{ competency.name }}</div>
+                                            <ol class="dd-list" ng-repeat="task in competency.tasks" ng-show="competency.expanded">
+                                                <li class="dd-item">
+                                                    <a style="float:right" href="#" title="{{ task.description }}" data-rel="tooltip"></a>
+                                                    <div class="dd-handle" style="height:55px;position: relative;">
+                                                        <div ng-click="open(task, competency.name)">
+                                                            <p style="line-height: 40px;">
+                                                                <span style="font-size:14px;position:absolute;top:0%;"> {{task.name}} </span>
+                                                                <span style="font-size:8px;color:gray;position:absolute;top:30%;" class="gray">{{task.initialDate}}/{{task.endDate}}</span>
+                                                            </p>
+                                                            <span class="progress-value" style="line-height: 40px; position: absolute; top: 10%; right: 10%;" ng-class="{'red': (task.progress>=0)&&(task.progress<25), 'yellow': (task.progress>=25)&&(task.progress<50), 'green': (task.progress>=50)&&(task.progress<75), 'blue': (task.progress>=75)&&(task.progress<=100)}" ng-click="editProgress(task)" ng-hide="task.isEditing">{{ task.progress }}%</span>
+                                                        </div>
+                                                            <span ng-click="deleteTask(task)" ng-show="!visitor">
+                                                            <i class="glyphicon glyphicon-trash" style="position:absolute; top:15%;right:2%;" tooltip="Remove" tooltip-trigger="mouseenter" tooltip-placement="left"></i>
+                                                        </span>
+                                                        <span ng-show="task.progress==100 && !visitor" ng-click="openRequestModal(task)">
+                                                            <i class="glyphicon glyphicon-send" style="position:absolute; top:60%;right:2%;" tooltip="Send Review Request" tooltip-trigger="mouseenter" tooltip-placement="left"></i>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="box span4" ontablet="span4" ondesktop="span4" ng-show="!visitor && taskFormEnabled">
+                            <div class="box-header">
+                                <h2><i class="icon-list"></i>{{formTitle}}</h2>
+                            </div>
+                            <div class="box-content clearfix">
+                                <form name="taskForm" class="form-horizontal" role="form" style="width: 97%;" ng-submit="ok(taskForm.$valid)">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Name*</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="task.name" ng-required="true" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Description</label>
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" style="height: 100px" ng-model="task.description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Progress</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" min="0" max="100" type="number" ng-model="task.progress">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Initial Date*</label>
+                                        <div class="col-md-7">
+                                            <input class="form-control" type="date" ng-model="task.initialDate" ng-required="true" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Final Date*</label>
+                                        <div class="col-md-7">
+                                            <input class="form-control" type="date" ng-model="task.endDate" ng-required="true" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Competency</label>
+                                        <div class="col-md-8">
+                                            <label ng-hide="isCreatingTask" class="control-label">{{selectedCompetencyName}}</label>
+                                            <div ng-show="isCreatingTask" custom-select ng-model="point"
+                                                 ng-options="point.name for point in points"
+                                                 ng-click="selectConpetence()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Reviewer</label>
+                                        <div class="col-md-8">
+                                            <div custom-select ng-model="taskReviewer"
+                                                 ng-options="reviewer.fullname for reviewer in reviewers"
+                                                 ng-click="selectReviewer()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Current Score</label>
+                                        <div class="col-md-3">
+                                            <label class="control-label">{{point.result}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Next Score</label>
+                                        <div class="col-md-3">
+                                            <select class="form-control" ng-model="level" ng-options="level for level in levels" ng-change="updateSuggestions()"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 form-label">Final Product</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" ng-model="task.finalProduct">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-4">
+                                            <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="box span4" ontablet="span4" ondesktop="span4" ng-show="!visitor && taskSuggestionsEnabled">
+                            <div class="box-header">
+                                <h2><i class="icon-list"></i>{{config.VIEW.THIRD_PANEL_TITLE}}</h2>
+                            </div>
+                            <div class="box-content clearfix">
+                                <div ng-controller="ListCtrl">
+                                    <div ng-repeat="suggestion in suggestions">
+                                        <div class="thumbnail media border-suggestion">
+                                            <img class="img-size pull-left" ng-src="{{suggestion.image}}" alt="..." title="{{suggestion.level}}">
+                                            <h3 class="media-heading" ng-click="select($index)">
+                                                <a href="" tooltip-placement="right" tooltip="{{suggestion.description}}">{{suggestion.name}}</a>
+                                            </h3>
+                                            <h6 class="body-text">Autor: {{suggestion.creatorOfSuggestion}}</h6>
+                                            <h6 class="body-text">Estimate Time: {{suggestion.estimatedTime}} {{suggestion.time}}.</h6>
+                                            <h6 class="body-text">
+                                                <span class="label frame-size frame-color-{{suggestion.valueCompetecyLevel}}" title="Score a Suggestion">{{suggestion.valueCompetecyLevel}}</span>
+                                                Created To: {{suggestion.createdTo}}.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <pagination class="pagination-sm pagger-border"
+                                                ng-model="currentPage"
+                                                total-items="totalItems"
+                                                items-per-page="itemsPerPage"
+                                                max-size="maxSize"
+                                                boundary-links="true"
+                                                ng-change="pageChanged()">
+                                    </pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End: Work panel -->
+                    <div ng-show="tab=='results'">
+                        <iframe src={{resultsURL}}></iframe>
+                    </div>
+                </div> <!-- cd-tabs-content -->
+            </div>
+            <!-- end: Content -->
+        </div><!--/fluid-row-->
+        <div class="clearfix"></div>
+        <footer>
+            <p>
+                <span style="text-align:left;float:left">&copy; 2014 <a href="http://www.jalasoft.com" alt="Bootstrap Themes">Jalasoft</a></span>
+            </p>
+        </footer>
+    </div><!--/.fluid-container-->
+    <!-- start: JavaScript-->
+    <script src="../lib/jquery-2.1.1.min.js"></script>
+    <script src="../lib/angular.min.js"></script>
+    <script src="../lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../lib/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../lib/jquery.ui.touch-punch.js"></script>
+    <script src="../lib/modernizr.js"></script>
+    <script src="../lib/jquery.cookie.js"></script>
+    <script src='../lib/fullcalendar.min.js'></script>
+    <script src='../lib/jquery.dataTables.min.js'></script>
+    <script src="../lib/excanvas.js"></script>
+    <script src="../lib/jquery.chosen.min.js"></script>
+    <script src="../lib/jquery.uniform.min.js"></script>
+    <script src="../lib/jquery.cleditor.min.js"></script>
+    <script src="../lib/jquery.noty.js"></script>
+    <script src="../lib/jquery.elfinder.min.js"></script>
+    <script src="../lib/jquery.raty.min.js"></script>
+    <script src="../lib/jquery.iphone.toggle.js"></script>
+    <script src="../lib/jquery.uploadify-3.1.min.js"></script>
+    <script src="../lib/jquery.gritter.min.js"></script>
+    <script src="../lib/jquery.imagesloaded.js"></script>
+    <script src="../lib/jquery.masonry.min.js"></script>
+    <script src="../lib/jquery.knob.modified.js"></script>
+    <script src="../lib/jquery.sparkline.min.js"></script>
+    <script src="../lib/counter.min.js"></script>
+    <script src="../lib/raphael.2.1.0.min.js"></script>
+    <script src="../lib/justgage.1.0.1.min.js"></script>
+    <script src="../lib/jquery.autosize.min.js"></script>
+    <script src="../lib/retina.js"></script>
+    <script src="../lib/jquery.placeholder.min.js"></script>
+    <script src="../lib/wizard.min.js"></script>
+    <script src="../lib/core.min.js"></script>
+    <script src="../lib/charts.min.js"></script>
+    <script src="../lib/custom.min.js"></script>
+    <script src="../lib/jquery.nestable.js"></script>
+    <script src="../lib/filter.min.js"></script>
+    <script src="../lib/customSelect.min.js"></script>
+    <script src="../lib/ng-table.js"></script>
+    <script src="../lib/log4javascript.js"></script>
+    <script src="../service_connection/remoteResourse.js"></script>
+    <script src="../../Config/config.js"></script>
+    <script src="profileCtrl.js"></script>
+    <!-- end: JavaScript-->
+    </div>
+</body>
+</html>

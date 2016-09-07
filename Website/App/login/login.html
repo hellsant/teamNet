@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="TeamNetLogin">
+<head>
+    <!-- start: Meta -->
+    <meta charset="utf-8" />
+    <title>Log in</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="keyword" content="" />
+    <!-- end: Meta -->
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- end: Mobile Specific -->
+    <!-- start: CSS -->
+    <link href="../../Styles/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../Styles/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link href="../../Styles/style.min.css" rel="stylesheet"/>
+    <link href="../../Styles/style-responsive.min.css" rel="stylesheet"/>
+    <link href="../../Styles/retina.css" rel="stylesheet"/>
+    <link href="../../Styles/login.css" rel="stylesheet"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div class="container-fluid-full">
+        <div class="row-fluid">
+            <div class="row-fluid">
+                <div class="login-box" ng-controller="LoginCtrl" ng-form="LoginForm">
+                    <h1>Login</h1>
+                    <form>
+                        <fieldset>
+                            <input class="input-large span12" name="email" id="email" type="text" placeholder="E-mail" ng-model="email" style="color:white" required />
+                            <input class="input-large span12" name="password" id="password" type="password" placeholder="Password" ng-model="password" style="color:white" required />
+                            <div class="clearfix"></div>
+                            <div class="buttons">
+                                <button type="submit" class="btn btn-primary span8" ng-click="ok()">{{config.VIEW.MAIN_TITLE}}</button>
+                                <button type="button" class="btn btn-default span4" ng-click="open()">{{config.VIEW.REGISTER_TITLE}}</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div><!--/row-->
+        </div><!--/fluid-row-->
+    </div><!--/.fluid-container-->
+    <script src="../lib/angular.min.js"></script>
+    <script src="../lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script src="../lib/jquery-2.1.1.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../../Config/config.js"></script>
+    <script src="../Register/registerCtrl.js"></script>
+    <script src="loginCtrl.js"></script>
+</body>
+</html>

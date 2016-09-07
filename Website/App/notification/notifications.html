@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="TeamNet">
+<head>
+    <!-- start: Meta -->
+    <meta charset="utf-8" />
+    <title>Requests</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="keyword" content="" />
+    <!-- end: Meta -->
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- end: Mobile Specific -->
+    <!-- start: CSS -->
+    <link href="../../Styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Styles/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="../../Styles/style.min.css" rel="stylesheet" />
+    <link href="../../Styles/style-responsive.min.css" rel="stylesheet" />
+    <link href="../../Styles/retina.css" rel="stylesheet" />
+    <link href="../../Styles/modal-styles.css" rel="stylesheet" />
+    <link href="../../Styles/ng-table.css" rel="stylesheet" />
+    <link href="../../Styles/results.css" rel="stylesheet" />
+    <link href="../../css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../css/style-graphic.css" rel="stylesheet" />
+    <!-- end: CSS -->
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link id="ie-style" href="css/ie.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE 9]>
+        <link id="ie9style" href="css/ie9.css" rel="stylesheet">
+    <![endif]-->
+    <!-- start: Favicon and Touch Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+    <link rel="shortcut icon" href="ico/favicon.png" />
+    <!-- end: Favicon and Touch Icons -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body ng-controller="NotificationsCtrl">
+    <!-- start: Header -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a id="main-menu-toggle" class="hidden-phone open"><i class="icon-reorder"></i></a>
+                <div class="row-fluid">
+                    <a class="brand span2" href="index.html"><span>{{indexConfig.VIEW.TITLE}}</span></a>
+                </div>
+                <!-- start: Header Menu -->
+                <div class="nav-no-collapse header-nav">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
+                                <div class="avatar"><img ng-src="{{indexConfig.VIEW.AVATAR_SRC}}" alt="Avatar" /></div>
+                                <div class="user">
+                                    <span class="name">{{username}} {{lastname}}</span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-menu-title">
+                                </li>
+                                <li><a href="../profile/profile.html"><i class="icon-user"></i> Profile</a></li>
+                                <li><a href="../login/login.html"><i class="icon-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                        <!-- end: User Dropdown -->
+                    </ul>
+                </div>
+                <!-- end: Header Menu -->
+            </div>
+        </div>
+    </div>
+    <!-- start: Header -->
+    <div class="container-fluid-full">
+        <div class="row-fluid">
+            <!-- start: Main Menu -->
+            <div id="sidebar-left" class="span2">
+                <div class="nav-collapse sidebar-nav">
+                    <ul class="nav nav-tabs nav-stacked main-menu">
+                        <li ng-repeat="menu in menus">
+                            <a ng-href="{{menu.href}}"><i class="{{menu.icon}}"></i><span class="hidden-tablet"> {{menu.title}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end: Main Menu -->
+            <!-- start: Content -->
+            <div id="content" class="span10">
+                <div class="alert alert-danger alert-dismissible" role="alert" ng-show="error">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Error </strong> Try again
+                </div>
+                <div class="alert alert-info alert-dismissible" role="alert" ng-show="requests.length<=0">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Info </strong> There aren't requests for review
+                </div>
+                <!--start : list of requests-->
+                <div ng-repeat="request in requests">
+                    <!--start : panel default-->
+                    <div class="panel panel-default">
+                        <!--start : media panel-->
+                        <div class="media">
+                            <!--start : User image-->
+                            <div style="margin-left: 10px; margin-top: 10px; ">
+                                <a href="#" class="pull-left">
+                                    <img src="../../img/avatar4.jpg" class="media-object" alt="Sample Image">
+                                </a>
+                            </div>
+                            <!--end : User image-->
+                            <!--start : media body-->
+                            <div class="media-body">
+                                <div class="media-heading">
+                                    <h2><b>&ensp;{{username}} {{lastname}}</b><small>     <i>{{request.requestDate}}</i></small></h1>
+                                </div>
+
+                                <div class="row">
+                                <div class="col-md-10 col-md-offset-1" ng-show="!request.approved && request.reviewed ">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <i class="icon-remove"></i> &ensp;<strong>{{request.taskTitle}}</strong>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p>
+                                                {{request.taskDescription}}
+                                            </p>
+                                            <div ng-repeat="reference in request.references">
+                                                <i class="glyphicon glyphicon-link"></i>&ensp;<a href="{{reference.url}}">{{reference.name}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1"  ng-show="request.approved && request.reviewed">
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <i class="icon-ok"></i> &ensp;<strong>{{request.taskTitle}}</strong>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>
+                                                    {{request.taskDescription}}
+                                                </p>
+                                                <div ng-repeat="reference in request.references">
+                                                    <i class="glyphicon glyphicon-link"></i>&ensp;<a href="{{reference.url}}">{{reference.name}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1" ng-show="!request.reviewed">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <i class="icon-pencil"></i> &ensp;<strong>{{request.taskTitle}}</strong>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>
+                                                    {{request.taskDescription}}
+                                                </p>
+                                                <div ng-repeat="reference in request.references">
+                                                    <i class="glyphicon glyphicon-link"></i>&ensp;<a href="{{reference.url}}">{{reference.name}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                <!--start : Owner comments-->
+                                <div ng-show="request.commentsFromRequester !=null && request.commentsFromRequester!=''">
+                                    <div class="media">
+                                        <!--start : User image-->
+                                        <div style="margin-left: 10px; margin-top: 10px; ">
+                                            <a href="#" class="pull-left">
+                                                <img src="../../img/avatar4.jpg" class="media-object" alt="Sample Image">
+                                            </a>
+                                        </div>
+                                        <!--end : User image-->
+                                        <div class="media-body">
+                                            <div class="media-heading">
+                                                <h2><b>&ensp;{{username}} {{lastname}}</b><small>     <i>{{request.requestDate}}</i></small></h1>
+                                            </div>
+                                            <p>
+                                                &ensp;{{request.commentsFromRequester}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end: Owner comments-->
+                                <!--start : reviewer comments-->
+                                <div ng-show="request.commentsFromReviewer !=null && request.commentsFromReviewer!=''">
+                                    <div class="media">
+                                        <!--start : User image-->
+                                        <div style="margin-left: 10px; margin-top: 10px; ">
+                                            <a href="#" class="pull-left">
+                                                <img src="../../img/avatar3.jpg" class="media-object" alt="Sample Image">
+                                            </a>
+                                        </div>
+                                        <!--end : User image-->
+                                        <div class="media-body">
+                                            <div class="media-heading">
+                                                <h2><b>&ensp;{{request.reviewerName}}</b><small>     <i>{{request.revisionDate}}</i></small></h1>
+                                            </div>
+                                            <p>
+                                                &ensp;{{request.commentsFromReviewer}}
+                                            </p>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!--end : reviewer comments-->
+                                </div>
+                            <!--end: media body-->
+                        </div>
+                        <!--end: media panel-->
+                    </div>
+                    <!--end : panel default-->
+                </div>
+                <!--end : list requests-->
+            </div>
+        </div><!--/fluid-row-->
+        <div class="modal hide fade" id="myModal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Settings</h3>
+            </div>
+            <div class="modal-body">
+                <p>Here settings can be configured...</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-primary">Save changes</a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <footer>
+            <p>
+                <span style="text-align:left;float:left">&copy; 2014 <a href="http://www.jalasoft.com" alt="Bootstrap Themes">Jalasoft</a></span>
+            </p>
+        </footer>
+    </div><!--/.fluid-container-->
+    <!-- start: JavaScript-->
+    <script src="../lib/angular.min.js"></script>
+    <script src="../lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script src="../lib/jquery-2.1.1.min.js"></script>
+    <script src="../lib/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../lib/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../lib/jquery.ui.touch-punch.js"></script>
+    <script src="../lib/modernizr.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/jquery.cookie.js"></script>
+    <script src='../lib/fullcalendar.min.js'></script>
+    <script src='../lib/jquery.dataTables.min.js'></script>
+    <script src="../lib/excanvas.js"></script>
+    <script src="../lib/jquery.chosen.min.js"></script>
+    <script src="../lib/jquery.uniform.min.js"></script>
+    <script src="../lib/jquery.cleditor.min.js"></script>
+    <script src="../lib/jquery.noty.js"></script>
+    <script src="../lib/jquery.elfinder.min.js"></script>
+    <script src="../lib/jquery.raty.min.js"></script>
+    <script src="../lib/jquery.iphone.toggle.js"></script>
+    <script src="../lib/jquery.uploadify-3.1.min.js"></script>
+    <script src="../lib/jquery.gritter.min.js"></script>
+    <script src="../lib/jquery.imagesloaded.js"></script>
+    <script src="../lib/jquery.masonry.min.js"></script>
+    <script src="../lib/jquery.knob.modified.js"></script>
+    <script src="../lib/jquery.sparkline.min.js"></script>
+    <script src="../lib/counter.min.js"></script>
+    <script src="../lib/raphael.2.1.0.min.js"></script>
+    <script src="../lib/justgage.1.0.1.min.js"></script>
+    <script src="../lib/jquery.autosize.min.js"></script>
+    <script src="../lib/retina.js"></script>
+    <script src="../lib/jquery.placeholder.min.js"></script>
+    <script src="../lib/wizard.min.js"></script>
+    <script src="../lib/core.min.js"></script>
+    <script src="../lib/charts.min.js"></script>
+    <script src="../lib/custom.min.js"></script>
+    <script src="../lib/jquery.nestable.js"></script>
+    <script src="../lib/ng-table.js"></script>
+    <script src="../lib/jquery.flot.min.js"></script>
+    <script src="../lib/jquery.flot.js"></script>
+    <script src="../lib/jquery.flot.resize.js"></script>
+    <script src="../lib/jquery.flot.resize.min.js"></script>
+    <script src="../lib/log4javascript.js"></script>
+    <script src="../../Config/config.js"></script>
+    <script src="../service_connection/remoteResourse.js"></script>
+    <script src="notificationsCtrl.js"></script>
+    <!-- end: JavaScript-->
+    </div>
+</body>
+</html>

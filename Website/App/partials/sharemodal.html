@@ -1,0 +1,22 @@
+﻿<div class="modal-content container">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title text-center">{{config.VIEW.SHARE_TITLE}}</h4>
+    </div>
+    <div class="modal-body">
+        <div ng-form="requestForm" class="form-horizontal">
+            <div class="form-group">
+                <input type="text" class="form-control col-md-8" placeholder="{{config.VIEW.COMMENT_TITLE}}" ng-model="commentShare">
+            </div>
+            </br>
+            <selectize placeholder='Pick some groups...'
+                       config="groupsConfig" class='contacts'
+                       ng-model="groups">
+            </selectize>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-disabled="thereAreReferences" ng-click="share()">{{config.VIEW.SHARE_BUTTON}}</button>
+        <button class="btn btn-warning" ng-click="cancel()">{{config.VIEW.CANCEL_BUTTON}}</button>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+﻿.container h1 
+{
+    font-weight: bold;
+}
+
+.text-tab
+{
+    font-family: arial, verdana, sans-serif;
+    font-weight: bold;
+    font-size: 10;
+}
+.title {
+    width: 200px;
+    margin: 0 auto;
+}
+
+span.glyphicon-circle-arrow-up {
+    font-size: 25px;
+    color: green;
+}
+
+span.glyphicon-circle-arrow-down {
+    font-size: 25px;
+    color: red;
+}
+
+.sizeValue {
+    font-size: 17px;
+}
+
+.progress {
+    width:250px;
+    height: 25px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #DEE6E7;
+    border-radius: 4px;
+}
+
+.progress-bar-success {
+background-color: #31C731;
+background-image: linear-gradient(to bottom, #1ABE0E, #C7EDA8);
+  /**kground-image: linear-gradient(to bottom, #93C53D, #450606);**/
+ 
+
+background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,rgba(59, 216, 127, 0) 50%,rgba(207, 67, 184, 0.15) 50%,rgba(255,255,255,.15) 75%,rgba(207, 255, 248, 0) 75%,rgba(30, 163, 174, 0));
+}
+
+.progress-bar-success.green{
+background-color: #8AF28A;
+background-image: linear-gradient(to bottom, #1ABE0E, #C7EDA8);
+
+background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,rgba(59, 216, 127, 0) 50%,rgba(207, 67, 184, 0.15) 50%,rgba(255,255,255,.15) 75%,rgba(207, 255, 248, 0) 75%,rgba(30, 163, 174, 0));
+}
+
+.progress-bar-info {
+background-color: #4CC3E7;
+background-image: linear-gradient(to bottom, #1ABE0E, #C7EDA8);
+  /**kground-image: linear-gradient(to bottom, #93C53D, #450606);**/
+ 
+
+background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,rgba(59, 216, 127, 0) 50%,rgba(207, 67, 184, 0.15) 50%,rgba(255,255,255,.15) 75%,rgba(207, 255, 248, 0) 75%,rgba(30, 163, 174, 0));
+}
+
+.progress-bar-info.sky{
+background-color: #ADE8FA;
+background-image: linear-gradient(to bottom, #1ABE0E, #C7EDA8);
+
+background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,rgba(59, 216, 127, 0) 50%,rgba(207, 67, 184, 0.15) 50%,rgba(255,255,255,.15) 75%,rgba(207, 255, 248, 0) 75%,rgba(30, 163, 174, 0));
+}
+
+.progress-bar-warning {
+background-color: #E7E535;
+background-image: linear-gradient(to bottom, #1ABE0E, #C7EDA8);
+  /**kground-image: linear-gradient(to bottom, #93C53D, #450606);**/
+ 
+
+background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,rgba(59, 216, 127, 0) 50%,rgba(207, 67, 184, 0.15) 50%,rgba(255,255,255,.15) 75%,rgba(207, 255, 248, 0) 75%,rgba(30, 163, 174, 0));
+}
+
+.progress-bar-warning.yellow {
+background-color: #F2F178;
+background-image: linear-gradient(to bottom, #1ABE0E, #C7EDA8);
+
+background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,rgba(59, 216, 127, 0) 50%,rgba(207, 67, 184, 0.15) 50%,rgba(255,255,255,.15) 75%,rgba(207, 255, 248, 0) 75%,rgba(30, 163, 174, 0));
+}
+
+.progress-bar-danger {
+background-color: #EF4641;
+background-image: linear-gradient(to bottom, #1ABE0E, #C7EDA8);
+  /**kground-image: linear-gradient(to bottom, #93C53D, #450606);**/
+ 
+
+background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,rgba(59, 216, 127, 0) 50%,rgba(207, 67, 184, 0.15) 50%,rgba(255,255,255,.15) 75%,rgba(207, 255, 248, 0) 75%,rgba(30, 163, 174, 0));
+}
+
+.progress-bar-danger.red {
+background-color: #F28481;
+background-image: linear-gradient(to bottom, #1ABE0E, #C7EDA8);
+
+background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.15) 25%,transparent 25%,rgba(59, 216, 127, 0) 50%,rgba(207, 67, 184, 0.15) 50%,rgba(255,255,255,.15) 75%,rgba(207, 255, 248, 0) 75%,rgba(30, 163, 174, 0));
+}
+.progress-bar { 
+  transition: width 1s ease-in-out; 
+}
+/* All good till now. Now we'll style the background */
+.progress::-webkit-progress-bar {
+    border-radius: 15px;
+    padding: 1px;
+    box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Now the value part */
+.progress::-webkit-progress-value {
+    border-radius: 30px;
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+
+dropmenu {
+    display: inline-block;
+    background: #dadada;
+    margin: 0px;
+    width: 10%;
+    color: #666;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    background: -moz-linear-gradient(#dadada 0%, #fff 100%);
+    background: -webkit-linear-gradient(#CCC 0%, #fff 100%);
+    background: -ms-linear-gradient(#CCC 0%, #fff 100%);
+    background: -o-linear-gradient(#CCC 0%, #fff 100%);
+    border-right: solid 1px #dadada;
+}
+
+dropmenu:hover {
+        background: #dadada;
+        background: -moz-linear-gradient(#d2d2d2 0%, #f6f6f6 100%);
+        background: -webkit-linear-gradient(#d2d2d2 0%, #f6f6f6 100%);
+        background: -ms-linear-gradient(#d2d2d2 0%, #f6f6f6 100%);
+        background: -o-linear-gradient(#d2d2d2 0%, #f6f6f6 100%);
+        border-left: solid 1px #dadada;
+        border-right: solid 1px #dadada;
+        color: #06F;
+        text-shadow: 0 0 15px #fff;
+    }
+
+.size {
+    width: 100%;
+}
+
+.diffsuggested {
+    background-color: #FFFF66;
+}
+
+.valuesuggested {
+    background-color: #66FF66;
+}
+
+.selected {
+    background-color: #0099FF;
+}
+
+.both {
+    background-color: #FF5050;
+}
+
+#add_icon {
+    height:30px;
+    width:35px;
+}
+

@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>360 RESULTS</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/ng-table.css" />
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+
+</head>
+<body ng-app="main">
+    <div class="container">
+        <h1 class="text-center">360 RESULTS</h1>
+        <div ng-controller="DemoCtrl">
+            <tabset class="row">
+                <tab class="col-2">
+                    <tab-heading class="text-tab" tooltip="Table View" tooltip-trigger="mouseenter" tooltip-placement="top">
+                        <i class="glyphicon glyphicon-list-alt"></i> Table
+                    </tab-heading>
+                    <div class="container">
+                        <table ng-table="tableParams" class="table table-striped justified">
+                            <tbody ng-repeat="point in points">
+                                <tr class="ng-table-group" ng-init="point.selected = false;
+                                point.message = point.name; initAverages(point); changeMessage(point)" ng-attr-title="{{point.message}}">
+                                    <td colspan="{{$columns.length}}">
+                                        <div class="col-md-2">
+                                            <a href="" ng-click="point.$hideRows = !point.$hideRows">
+                                                <span class="glyphicon" ng-class="{ 'glyphicon-chevron-right': point.$hideRows, 'glyphicon-chevron-down': !point.$hideRows }"></span>
+                                                <strong>{{ point.name }}</strong>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3" ng-show="point.$hideRows">
+                                            <span><b>AVG</b></span>
+                                        </div>
+                                        <div class="col-md-4" ng-init="progressAvg(point, 0)" ng-show="point.$hideRows">
+                                            <progressbar class="progress-striped active" value="point.resultAvg" max="5" type="{{point.type}}" >
+                                                <span style="color:black; white-space:nowrap;">
+                                                <b>{{point.resultAvg}}</b>
+                                            </progressbar>
+                                        </div>
+                                    </td>
+                                    <td ng-class="{selected : isSelected(point),
+                                        diffsuggested : isDiffSuggested(point),
+                                        valuesuggested : isValueSuggested(point),
+                                        both : bothSuggested(point)}"
+                                        style="width:40px" ng-click="changeSelection(point)">
+                                        <input type="image" ng-hide="true" id="add_icon" ng-if="!isSelected(point)" src="icons/add.png" />
+                                        <input type="image" ng-hide="true" id="add_icon" ng-if="isSelected(point)" src="icons/checked.png" />
+                                    </td>
+                                </tr>
+                                <tr ng-hide="point.$hideRows" ng-repeat="result in point.results">
+
+                                    <td data-title="'Evaluator'" header-class="pull-center" class="text-left">
+                                        <span ng-bind="result.evaluator" />
+                                        <td class ="col-md-1">
+                                            <div ng-init="progressEvaluator(result, point, 0)">
+                                                <progressbar class="progress-striped active" value="result.value" max="5" type="{{result.type}}">
+                                                    <span style="color:black">
+                                                    <b>{{result.value}}</b>
+                                            </progressbar>
+                                        </div>
+                                    </td>
+                                    </td>
+                                    <td sortable="result" header-class="pull-center" data-title="'Result'" class="text-center">
+                                        <span ng-bind="result.value" />
+                                    </td>
+                                    <td data-title="'Expected'" header-class="pull-center"  class="text-center">
+                                        <span ng-bind="result.expected" />
+                                    </td>
+                                    <td sortable="need" header-class="pull-left" data-title="'Need'" class="text-center">
+                                   <!-- <span ng-class="{ 'plus': user.money >= 0,'minus': user.money < 0 }">{{user.money}}</span>-->
+                                        <span ng-class="{'plus' : result.need <= 0, 'minus' : result.need > 0}" ng-bind="result.need"/>
+                                    </td>
+                                </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                </tab>
+                <tab>
+                    <tab-heading class="text-tab" tooltip="View By Graphic" tooltip-trigger="mouseenter" tooltip-placement="top">
+                        <i class="glyphicon glyphicon-signal"></i> Graphic
+                    </tab-heading>
+                </tab>
+                <tab-heading class=" col-md-offset-8">
+                    <div role="presentation" class="btn-group" dropdown is-open="status.isopen">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="disabled">
+                        Order By <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-toggle="tab" ng-repeat="submenu in menusOrder">
+                            <a role="menuitem" ng-click="selectLevel($index)">{{submenu}}</a>
+                        </li>
+                    </ul>
+                    </div>
+                </tab-heading>
+            </tabset>
+        </div>
+    </div>
+
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+    <script src="Scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script src="Scripts/ng-table.js"></script>
+    <script src="Scripts/jquery-1.9.0.min.js"></script>
+    <script src="Scripts/jquery.flot.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/script.js"></script>
+
+</body>
+</html>

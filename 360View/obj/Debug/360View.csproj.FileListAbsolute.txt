@@ -1,0 +1,6 @@
+D:\jala\TeamNet\TeamNet\360View\bin\360View.dll.config
+D:\jala\TeamNet\TeamNet\360View\bin\360View.dll
+D:\jala\TeamNet\TeamNet\360View\bin\360View.pdb
+D:\jala\TeamNet\TeamNet\360View\obj\Debug\360View.csprojResolveAssemblyReference.cache
+D:\jala\TeamNet\TeamNet\360View\obj\Debug\360View.dll
+D:\jala\TeamNet\TeamNet\360View\obj\Debug\360View.pdb

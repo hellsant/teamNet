@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="suggestion">
+<head>
+
+    <!-- start: Meta -->
+    <meta charset="utf-8" />
+    <title>Suggestions</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="keyword" content="" />
+    <!-- end: Meta -->
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- end: Mobile Specific -->
+    <!-- start: CSS -->
+    <link href="../../Styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Styles/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="../../Styles/style.min.css" rel="stylesheet" />
+    <link href="../../Styles/style-responsive.min.css" rel="stylesheet" />
+    <link href="../../Styles/retina.css" rel="stylesheet" />
+    <link href="../../Styles/modal-styles.css" rel="stylesheet" />
+    <link href="../../css/suggestion.css" rel="stylesheet" />
+    <!-- end: CSS -->
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link id="ie-style" href="css/ie.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE 9]>
+        <link id="ie9style" href="css/ie9.css" rel="stylesheet">
+    <![endif]-->
+    <!-- start: Favicon and Touch Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+    <link rel="shortcut icon" href="ico/favicon.png" />
+    <!-- end: Favicon and Touch Icons -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body ng-controller="SuggestionCtrl">
+    <!-- start: Header -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a id="main-menu-toggle" class="hidden-phone open"><i class="icon-reorder"></i></a>
+                <div class="row-fluid">
+                    <a class="brand span2" href="/index.html"><span>TeamNet</span></a>
+                </div>
+                <!-- start: Header Menu -->
+                <div class="nav-no-collapse header-nav">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
+                                <div class="avatar"><img ng-src="{{config.VIEW.AVATAR_SRC}}" alt="Avatar" /></div>
+                                <div class="user">
+                                    <span class="name">{{username}} {{lastname}}</span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-menu-title">
+
+                                </li>
+                                <li><a href="../profile/profile.html"><i class="icon-user"></i> Profile</a></li>
+                                <li><a href="../login/login.html"><i class="icon-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                        <!-- end: User Dropdown -->
+                    </ul>
+                </div>
+                <!-- end: Header Menu -->
+
+            </div>
+        </div>
+    </div>
+    <!-- start: Header -->
+
+    <div class="container-fluid-full">
+        <div class="row-fluid">
+
+            <!-- start: Main Menu -->
+            <div id="sidebar-left" class="span2">
+                <div class="nav-collapse sidebar-nav">
+                    <ul class="nav nav-tabs nav-stacked main-menu">
+                        <li ng-repeat="menu in menus">
+                            <a ng-href="{{menu.href}}"><i class="{{menu.icon}}"></i><span class="hidden-tablet"> {{menu.title}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end: Main Menu -->
+            <!-- start: Content -->
+            <div id="content" class="span10">
+                <div class="row-fluid">
+                    <!-- start: List of Suggestions -->
+                    <div class="box span10" ontablet="span10" ondesktop="span10">
+                        <div class="box-header">
+                            <h2><i class="icon-list"></i>{{config.VIEW.MAIN_TITLE}}</h2>
+                            <div class="box-icon">
+                                <a href="formsuggestion.html" class="btn-add-task"><i class="icon-plus"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content clearfix">
+                            <div ng-controller="ListCtrl">
+                                <div class="col-md-6" ng-repeat="suggestion in suggestions">
+                                    <div class="thumbnail media border-suggestion">
+                                        <img class="img-size pull-left" ng-src="{{suggestion.image}}" alt="..." title="{{suggestion.level}}">
+                                        <h3 class="media-heading"><a href="" tooltip-placement="right" tooltip="{{suggestion.description}}">{{suggestion.name}}</a></h3>
+                                        <h6 class="body-text">Autor: {{suggestion.creatorOfSuggestion}}</h6>
+                                        <h6 class="body-text">Estimate Time: {{suggestion.estimatedTime}} {{suggestion.time}}.</h6>
+                                        <h6 class="body-text">
+                                            <span class="label frame-size frame-color-{{suggestion.valueCompetecyLevel}}" title="Score a Suggestion">{{suggestion.valueCompetecyLevel}}</span>
+                                            Created To: {{suggestion.createdTo}}.
+                                        </h6>
+                                    </div>
+                                </div>
+                                <pagination class="pagination-sm pagger-border col-md-12"
+                                            ng-model="currentPage"
+                                            total-items="totalItems"
+                                            items-per-page="itemsPerPage"
+                                            max-size="maxSize"
+                                            boundary-links="true"
+                                            ng-change="pageChanged()">
+                                </pagination>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: List of Suggestions -->
+                </div>
+                <!-- end: Content -->
+             </div>
+        <!--/fluid-row-->
+            <div class="modal hide fade" id="myModal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>Settings</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Here settings can be configured...</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary">Save changes</a>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <footer>
+                <p>
+                    <span style="text-align:left;float:left">&copy; 2014 <a href="http://www.jalasoft.com" alt="Bootstrap Themes">Jalasoft</a></span>
+                </p>
+            </footer>
+
+        </div><!--/.fluid-container-->
+        <!-- start: JavaScript-->
+        <script src="../lib/jquery-2.1.1.min.js"></script>
+        <script src="../lib/bootstrap.min.js"></script>
+        <script src="../lib/angular.min.js"></script>
+        <script src="../lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+        <script src="../lib/jquery-migrate-1.2.1.min.js"></script>
+        <script src="../lib/jquery-ui.min.js"></script>
+        <script src="../lib/jquery.ui.touch-punch.js"></script>
+        <script src="../lib/modernizr.js"></script>
+        <script src="../lib/jquery.cookie.js"></script>
+        <script src='../lib/fullcalendar.min.js'></script>
+        <script src='../lib/jquery.dataTables.min.js'></script>
+        <script src="../lib/excanvas.js"></script>
+        <script src="../lib/jquery.chosen.min.js"></script>
+        <script src="../lib/jquery.uniform.min.js"></script>
+        <script src="../lib/jquery.cleditor.min.js"></script>
+        <script src="../lib/jquery.noty.js"></script>
+        <script src="../lib/jquery.elfinder.min.js"></script>
+        <script src="../lib/jquery.raty.min.js"></script>
+        <script src="../lib/jquery.iphone.toggle.js"></script>
+        <script src="../lib/jquery.uploadify-3.1.min.js"></script>
+        <script src="../lib/jquery.gritter.min.js"></script>
+        <script src="../lib/jquery.imagesloaded.js"></script>
+        <script src="../lib/jquery.masonry.min.js"></script>
+        <script src="../lib/jquery.knob.modified.js"></script>
+        <script src="../lib/jquery.sparkline.min.js"></script>
+        <script src="../lib/counter.min.js"></script>
+        <script src="../lib/raphael.2.1.0.min.js"></script>
+        <script src="../lib/justgage.1.0.1.min.js"></script>
+        <script src="../lib/jquery.autosize.min.js"></script>
+        <script src="../lib/retina.js"></script>
+        <script src="../lib/jquery.placeholder.min.js"></script>
+        <script src="../lib/wizard.min.js"></script>
+        <script src="../lib/core.min.js"></script>
+        <script src="../lib/charts.min.js"></script>
+        <script src="../lib/custom.min.js"></script>
+        <script src="../lib/jquery.nestable.js"></script>
+        <script src="../service_connection/remoteResourse.js"></script>
+        <script src="../../Config/config.js"></script>
+        <script src="suggestionsCtrl.js"></script>
+        <!-- end: JavaScript-->
+    </div>
+</body>
+</html>

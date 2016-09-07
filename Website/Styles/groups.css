@@ -1,0 +1,66 @@
+﻿header {
+    align-content: center;
+    align-items: center;
+    font-size: xx-large;
+    font-family: Calibri;
+}
+
+.header-buttons {
+    background-color: black;
+    width: 35px;
+    height: 35px;
+    padding: 0px;
+    padding-top: 0px;
+    border: 0px;
+}
+
+    .header-buttons:hover {
+        border-color: grey;
+    }
+
+.desc {
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.image {
+    height: 80px;
+    width: 80px;
+    border: thin;
+    border-color: gray;
+}
+
+.btn-circle {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.42;
+    border-radius: 50px;
+    float: right;
+}
+
+#infoButton {
+    float: right;
+    margin-right: 40px;
+}
+
+#imageGroup {
+    height: 30px;
+    width: 30px;
+    border: thin;
+    border-color: gray;
+}
+
+#groupsList {
+    height: 500px;
+    overflow: scroll;
+}
+
+.panel-body {
+    height: 240px;
+    overflow: scroll;
+}

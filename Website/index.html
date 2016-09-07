@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="TeamNet">
+<head>
+
+    <!-- start: Meta -->
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="keyword" content="" />
+    <!-- end: Meta -->
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- end: Mobile Specific -->
+    <!-- start: CSS -->
+    <link href="Styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="Styles/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="Styles/style.min.css" rel="stylesheet" />
+    <link href="Styles/style-responsive.min.css" rel="stylesheet" />
+    <link href="Styles/retina.css" rel="stylesheet" />
+    <link href="Styles/modal-styles.css" rel="stylesheet" />
+    <link href="Styles/font-awesome.min.css" rel="stylesheet" />
+    <link href="Styles/filter.css" rel="stylesheet" />
+    <link href="../../Styles/selectize.css" rel="stylesheet" />
+    <link href="css/suggestion.css" rel="stylesheet" />
+    <link href="css/request.css" rel="stylesheet" />
+    <link href="../../Styles/feed.css" rel="stylesheet" />
+    <!-- end: CSS -->
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link id="ie-style" href="css/ie.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE 9]>
+        <link id="ie9style" href="css/ie9.css" rel="stylesheet">
+    <![endif]-->
+    <!-- start: Favicon and Touch Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+    <link rel="shortcut icon" href="ico/favicon.png" />
+    <!-- end: Favicon and Touch Icons -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body ng-controller="TasksCtrl">
+    <!-- start: Header -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a id="main-menu-toggle" class="hidden-phone open"><i class="icon-reorder"></i></a>
+                <div class="row-fluid">
+                    <a class="brand span2" href="index.html"><span>{{config.VIEW.TITLE}}</span></a>
+                </div>
+                <!-- start: Header Menu -->
+                <div class="nav-no-collapse header-nav">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a class="btn account dropdown-toggle" data-toggle="dropdown">
+                                <div class="avatar"><img ng-src="{{config.VIEW.AVATAR_SRC}}" alt="Avatar" /></div>
+                                <div class="user">
+                                    <span class="name">{{username}} {{lastname}}</span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-menu-title">
+
+                                </li>
+                                <li><a href="App/profile/profile.html"><i class="icon-user"></i> Profile</a></li>
+                                <li><a href="../app/login/login.html"><i class="icon-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                        <!-- end: User Dropdown -->
+                    </ul>
+                </div>
+                <!-- end: Header Menu -->
+
+            </div>
+        </div>
+    </div>
+    <!-- start: Header -->
+
+    <div class="container-fluid-full">
+        <div class="row-fluid">
+
+            <!-- start: Main Menu -->
+            <div id="sidebar-left" class="span2">
+                <div class="nav-collapse sidebar-nav">
+                    <ul class="nav nav-tabs nav-stacked main-menu">
+                        <li ng-repeat="menu in menus">
+                            <a ng-href="{{menu.href}}"><i class="{{menu.icon}}"></i><span class="hidden-tablet"> {{menu.title}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end: Main Menu -->
+            <!-- start: Content -->
+            <div id="content" class="span10">
+                <div class="row-fluid">
+                    <!-- start: Publications-->
+                    <div class="box span8" ontablet="span8" ondesktop="span8">
+                        <div class="box-header">
+                            <h2><i class="icon-list"></i>{{config.VIEW.FOURTH_PANEL_TITLE}}</h2>
+                            <div class="box-icon">
+                            </div>
+                        </div>
+                        <div class="box-content" style="overflow-y: auto; height: 400px;">
+                            <div class="social-feed-container">
+                                <div class="social-feed-element " ng-repeat="publication in publications">
+                                    <div class="content">
+                                        <a class="pull-left" href="#" target="_blank">
+                                            <img class="media-object" src="/img/default_image.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <p>
+                                                <span class="author-title"> {{publication.publicator}} </span>
+                                                <span class="muted pull-right"> {{publication.date}} </span>
+                                            </p> <div class="text-wrapper">
+                                                <p class="social-feed-text"> {{publication.comment}} </p>
+                                                <hr />
+                                                <p class="social-feed-text">
+                                                    Attachements:
+                                                    <div ng-repeat="link in publication.taskLinks">
+                                                        <a href="#"> {{link}} </a>
+                                                    </div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: Publications-->
+                    <!-- start: Todo Task-->
+                    <div class="box span4" ontablet="span6" ondesktop="span4">
+                        <div class="box-header">
+                            <h2><i class="icon-list"></i>{{config.VIEW.FIRST_PANEL_TITLE}}</h2>
+                            <div class="box-icon">
+                                <a href="" class="btn-add-task" ng-click="createTask()"><i class="icon-plus"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content" style="overflow-y: auto; height: 400px;">
+                                <ul class="dashboard-list">
+                                    <li class="task" ng-repeat="task in tasks" ng-dblclick="open(task)">
+                                        <div ng-mouseover="displayButtons()" ng-model="vaule" ng-mouseleave="buttonsLeave()">
+                                        <a href="#" title="{{ task.description }}" data-rel="tooltip">
+                                            <span ng-show="task.isEditing" style="margin-top: 0px; margin-bottom: 0px; padding: 0px 0px 0px 0px">
+                                                <input type="number" name="newProgress" min=" 0" max="100" name="progress" value="{{ task.progress }}" ng-model="task.progress" ng-keyup="hitEnterProgress($event, task)" style="width: 40px; height: 30px; margin-top: 0px; margin-bottom: 0px;">
+                                            </span>
+                                            <span class="progress-value" ng-class="{'red': (task.progress>=0)&&(task.progress<25), 'yellow': (task.progress>=25)&&(task.progress<50), 'green': (task.progress>=50)&&(task.progress<75), 'blue': (task.progress>=75)&&(task.progress<=100)}" ng-click="editProgress(task)" ng-hide="task.isEditing">{{ task.progress }}%</span>
+                                            <a href="#" ng-click="open(task)">{{ task.name }}</a>
+                                        </a>
+                                        <a href="#" style="float: right; opacity: 0.2;" ng-show="value" ng-click="deleteTask(task)">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                        <a href="../app/profile/profile.html" style="float: right; opacity: 0.2;" ng-show="value" ng-click="open(task)">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        <!--Start: Share button-->
+                                        <a href="#" style="float: right; opacity: 0.6; color: blue" ng-show="task.isApproved" ng-click="shareTask(task)">
+                                            <i class="glyphicon glyphicon-share" tooltip="Share Task" tooltip-trigger="mouseenter" tooltip-placement="left"></i>
+                                        </a>
+                                        <!--End: Share button-->
+                                        <!--start: Request Button-->
+                                        <a href="#" ng-show="isRequest(task)" style="float: right; opacity: 0.6;" ng-click="openRequestModal(task)">
+                                            <i class="glyphicon glyphicon-eye-open requestForm" tooltip="Request For Review" tooltip-trigger="mouseenter" tooltip-placement="left"></i>
+                                        </a>
+                                        <!--End: Request Button-->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <!-- end: Todo Task-->
+                </div>
+            </div>
+            <!-- end: Content -->
+
+            <div class="modal hide fade" id="myModal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>Settings</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Here settings can be configured...</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary">Save changes</a>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <footer>
+                <p>
+                    <span style="text-align:left;float:left">&copy; 2014 <a href="http://www.jalasoft.com" alt="Bootstrap Themes">Jalasoft</a></span>
+                </p>
+            </footer>
+
+        </div><!--/.fluid-container-->
+        <!-- start: JavaScript-->
+        <script src="App/lib/jquery-2.1.1.min.js"></script>
+        <script src="App/lib/bootstrap.min.js"></script>
+        <script src="App/lib/angular.min.js"></script>
+        <script src="App/lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+        <script src="App/lib/jquery-migrate-1.2.1.min.js"></script>
+        <script src="App/lib/jquery-ui.min.js"></script>
+        <script src="App/lib/jquery.ui.touch-punch.js"></script>
+        <script src="App/lib/modernizr.js"></script>
+        <script src="App/lib/jquery.cookie.js"></script>
+        <script src='App/lib/fullcalendar.min.js'></script>
+        <script src='App/lib/jquery.dataTables.min.js'></script>
+        <script src="App/lib/excanvas.js"></script>
+        <script src="App/lib/jquery.chosen.min.js"></script>
+        <script src="App/lib/jquery.uniform.min.js"></script>
+        <script src="App/lib/jquery.cleditor.min.js"></script>
+        <script src="App/lib/jquery.noty.js"></script>
+        <script src="App/lib/jquery.elfinder.min.js"></script>
+        <script src="App/lib/jquery.raty.min.js"></script>
+        <script src="App/lib/jquery.iphone.toggle.js"></script>
+        <script src="App/lib/jquery.uploadify-3.1.min.js"></script>
+        <script src="App/lib/jquery.gritter.min.js"></script>
+        <script src="App/lib/jquery.imagesloaded.js"></script>
+        <script src="App/lib/jquery.masonry.min.js"></script>
+        <script src="App/lib/jquery.knob.modified.js"></script>
+        <script src="App/lib/jquery.sparkline.min.js"></script>
+        <script src="App/lib/counter.min.js"></script>
+        <script src="App/lib/raphael.2.1.0.min.js"></script>
+        <script src="App/lib/justgage.1.0.1.min.js"></script>
+        <script src="App/lib/jquery.autosize.min.js"></script>
+        <script src="App/lib/retina.js"></script>
+        <script src="App/lib/jquery.placeholder.min.js"></script>
+        <script src="App/lib/wizard.min.js"></script>
+        <script src="App/lib/core.min.js"></script>
+        <script src="App/lib/charts.min.js"></script>
+        <script src="App/lib/custom.min.js"></script>
+        <script src="App/lib/jquery.nestable.js"></script>
+        <script src="App/lib/filter.min.js"></script>
+        <script src="App/lib/customSelect.min.js"></script>
+        <script src="App/lib/selectize.js"></script>
+        <script src="App/lib/angular-selectize.js"></script>
+        <script src="Config/config.js"></script>
+        <script src="App/service_connection/remoteResourse.js"></script>
+        <script src="App/login/loginCtrl.js"></script>
+        <script src="App/task/taskCtrl.js"></script>
+        <script src="App/requester/requesterCtrl.js"></script>
+        <script src="App/share/shareTaskCtrl.js"></script>
+        <!-- end: JavaScript-->
+    </div>
+</body>
+</html>

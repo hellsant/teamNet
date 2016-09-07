@@ -1,0 +1,140 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    text-align: center;
+    width: 90%;
+}
+
+.container h1 
+{
+    font-weight: bold;
+}
+
+.text-tab
+{
+    font-family: arial, verdana, sans-serif;
+    font-weight: bold;
+    font-size: 10;
+}
+
+.title {
+    width: 200px;
+    margin: 0 auto;
+}
+
+section {
+    width: 80%;
+    min-height: 30px;
+    margin: 10px auto;
+    border: solid 1px #DADADA;
+    border-radius: 3px;
+    padding: 0px;
+    background: #DADADA;
+    background: -moz-linear-gradient(#dadada 0%, #fff 100%);
+    background: -webkit-linear-gradient(#CCC 0%, #fff 100%);
+    background: -ms-linear-gradient(#CCC 0%, #fff 100%);
+    background: -o-linear-gradient(#CCC 0%, #fff 100%);
+}
+
+body {
+    padding: 10px !important;
+}
+
+.ng-table .plus, .ng-table .minus {
+    font-weight: bold;
+    padding-left: 18px;
+    position: relative;
+}
+.ng-table .plus:before, .ng-table .minus:before {
+    content:"";
+    border-width: 4px;
+    border-style:solid;
+    left: 8px;
+    top: 50%;
+    position: absolute;
+    margin-top: -2px;
+}
+.ng-table .plus {
+    color: green;
+}
+.ng-table .plus:before {
+    border-color: green;
+    border-top:none;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+}
+.ng-table .minus {
+    color: red;
+}
+.ng-table .minus:before {
+    border-color: red;
+    border-bottom:none;
+    border-left:4px solid transparent;
+    border-right:4px solid transparent;
+}
+
+.progress {
+    width: 325px;
+    height: 30px;
+    display: block;
+    /* Important Thing */
+    -webkit-appearance: none;
+    border: none;
+}
+
+/* All good till now. Now we'll style the background */
+.progress::-webkit-progress-bar {
+    border-radius: 30px;
+    padding: 1px;
+    box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Now the value part */
+.progress::-webkit-progress-value {
+    border-radius: 50px;
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+    background:
+        -webkit-linear-gradient(45deg, transparent, transparent 33%, rgba(0, 0, 0, 0.1) 33%, rgba(0, 0, 0, 0.1) 66%, transparent 66%),
+        -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.2)),
+        -webkit-linear-gradient(left, #ba7448, #c4672d);
+    
+    /* Looks great, now animating it */
+    background-size: 25px 14px, 100% 100%, 100% 100%;
+    -webkit-animation: move 5s linear 1 infinite;
+}
+
+/* That's it! Now let's try creating a new stripe pattern and animate it using animation and keyframes properties  */
+
+@-webkit-keyframes move {
+    0% {background-position: 0px 0px, 0 0, 0 0}
+    100% {background-position: -100px 0px, 0 0, 0 0}
+}
+
+
+.size {
+    width: 100%;
+}
+
+.diffsuggested {
+    background-color: #FFFF66;
+}
+
+.valuesuggested {
+    background-color: #66FF66;
+}
+
+.selected {
+    background-color: #0099FF;
+}
+
+.both {
+    background-color: #FF5050;
+}
+
+#add_icon {
+    height:30px;
+    width:35px;
+}

@@ -1,0 +1,21 @@
+div.form-group.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.requestForm {
+    color: #088A08;
+}
+
+div.dropdown-menu {
+    min-width: 97% !important;
+}
+
+div.custom-select-search {
+    padding: 0 1px !important;
+}
+
+div.custom-select {
+    display: inherit;
+    width: auto;
+}

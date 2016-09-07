@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="e0fcdd9e-f0e7-4873-a6d3-ae53025da117" name="ShareFinishedWorsDiagram" linkedPackageId="c61486cd-bd49-451b-8f98-8aa0592f7daa" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="c15526a7-e948-4f18-9dec-5e8bbc5e9eca">
+      <profileInstance Id="3e587e6c-1162-40f3-86d3-869beb8f0a5f" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="61a6d307-f5a6-4f78-903d-dd771457675b">
+      <profileInstance Id="15d918db-3b72-4964-9624-fcc61af661fb" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="219e8892-3093-4a2d-849b-2fb193df9b7b" name="ShareFinishedWorsDiagram" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="ebfc51b7-3e2d-4302-bd80-e139444062a0" />
+        <nodes>
+          <initialNode Id="535893c5-8fe1-4087-8363-c698bc849721" name="Initial1" isLeaf="false">
+            <elementDefinition Id="f1cc2d4c-f259-4722-9301-75d9d5b54516" />
+            <flowNodeTargets>
+              <controlFlow Id="fe46e613-5821-4859-bad7-aba3c1a2d969" isLeaf="false">
+                <opaqueActionMoniker Id="ffa40000-f69b-4078-a3c7-5a2c7eb6cb2f" LastKnownName="User login  in  the application" />
+                <elementDefinition Id="0632f10b-a2a5-4ffe-bfd6-e30819bb8238" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="3ec31e07-23df-4e99-ab48-a940ce327466" name="User creates a task" isLeaf="false">
+            <elementDefinition Id="99766065-3c35-4f04-b17f-e97db053a55c" />
+            <flowNodeTargets>
+              <controlFlow Id="ee413ea1-1ba9-497d-a909-9e58b8dfdd7b" isLeaf="false">
+                <opaqueActionMoniker Id="c62ca18f-ea33-4be9-8b5a-ffd525bf7598" LastKnownName="Application saves task" />
+                <elementDefinition Id="9a92fc64-45ff-4e90-9ba1-8292d6fcafc1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="c62ca18f-ea33-4be9-8b5a-ffd525bf7598" name="Application saves task" isLeaf="false">
+            <elementDefinition Id="20982964-924b-46db-b329-48ef608def0e" />
+            <flowNodeTargets>
+              <controlFlow Id="20e69fed-9dd7-4e3f-8aff-ae8ab6c56959" isLeaf="false">
+                <opaqueActionMoniker Id="4f621a13-1033-4f38-ad6c-3a5d9de55015" LastKnownName="User selects a task" />
+                <elementDefinition Id="ab31ea2a-01e6-402d-8813-b9fa3db51d14" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="606a0a6b-7f83-4696-85b4-d69e88555929" name="User adds a new sub task related with one task" isLeaf="false">
+            <elementDefinition Id="118f1ea2-6cbf-48d1-9ded-81217bd46d82" />
+            <flowNodeTargets>
+              <controlFlow Id="2e2cfeae-70c1-45e7-b418-23f9f7f214b9" isLeaf="false">
+                <activityFinalNodeMoniker Id="687b897d-a016-43a5-b22b-8902e411d7da" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="32ebb415-5754-4391-b493-9e4b969411ad" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="4f621a13-1033-4f38-ad6c-3a5d9de55015" name="User selects a task" isLeaf="false">
+            <elementDefinition Id="dbc3014f-c370-4846-a362-17783477b2e8" />
+            <flowNodeTargets>
+              <controlFlow Id="3e73b1f6-662a-468e-a25c-a67a4eb770c3" isLeaf="false">
+                <decisionNodeMoniker Id="c942c265-2b12-4f62-9c83-d36dc066ccda" LastKnownName="Decision1" />
+                <elementDefinition Id="6160e4b4-7cbf-4137-ac9d-39ea5d223d12" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="c942c265-2b12-4f62-9c83-d36dc066ccda" name="Decision1" isLeaf="false">
+            <elementDefinition Id="c05c0af8-2157-4aab-828b-48f536c00119" />
+            <flowNodeTargets>
+              <controlFlow Id="974855d0-dfd3-4516-847a-39cf57a6c9f6" guard="User wants to add new sub task" isLeaf="false">
+                <opaqueActionMoniker Id="606a0a6b-7f83-4696-85b4-d69e88555929" LastKnownName="User adds a new sub task related with one task" />
+                <elementDefinition Id="597ce1e6-12ca-41de-af11-3a10722f8eeb" />
+              </controlFlow>
+              <controlFlow Id="d54c118b-935c-43c2-88e3-6037c1598c84" isLeaf="false">
+                <opaqueActionMoniker Id="94578788-3b57-462f-aed8-08b847f0217a" LastKnownName="User check finished sub tasks" />
+                <elementDefinition Id="a1725227-de1e-44f3-8b66-f042f4660eef" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="94578788-3b57-462f-aed8-08b847f0217a" name="User check finished sub tasks" isLeaf="false">
+            <elementDefinition Id="46943b12-6213-43c8-ac35-485f4cef7588" />
+            <flowNodeTargets>
+              <controlFlow Id="11e0eca0-1d6b-4218-b9f4-a2133578f8b1" isLeaf="false">
+                <decisionNodeMoniker Id="0fee3dbc-ad5b-4587-a26e-046cee6d1a03" LastKnownName="Decision11" />
+                <elementDefinition Id="61811a26-d61a-4f4e-a6ea-8882892f392b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="0fee3dbc-ad5b-4587-a26e-046cee6d1a03" name="Decision11" isLeaf="false">
+            <elementDefinition Id="96e8d9a1-b593-472a-8c5d-829118f3c8cb" />
+            <flowNodeTargets>
+              <controlFlow Id="ec6396e9-a2ee-481b-850d-9f4794122218" guard="All sub tasks related with task are checked" isLeaf="false">
+                <opaqueActionMoniker Id="f1a81272-4690-49e3-8b18-cc94f79b95ce" LastKnownName="Share option is enabled on the task panel" />
+                <elementDefinition Id="309d557c-becb-49ca-bd1e-3fcd25840b1d" />
+              </controlFlow>
+              <controlFlow Id="edda47b6-5ba6-4104-91fe-ebbfec70d632" isLeaf="false">
+                <mergeNodeMoniker Id="f7e47c08-c98e-47fc-bf2b-964336033145" LastKnownName="Merge1" />
+                <elementDefinition Id="cae91ee3-ed59-4fbb-bb1e-80272c0f4bc8" />
+              </controlFlow>
+              <controlFlow Id="4f7c2e5e-0c56-4843-8f90-aa843abd5341" isLeaf="false">
+                <activityFinalNodeMoniker Id="687b897d-a016-43a5-b22b-8902e411d7da" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="378c31f7-871d-4b0a-8c55-889f1c4f9c49" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="f1a81272-4690-49e3-8b18-cc94f79b95ce" name="Share option is enabled on the task panel" isLeaf="false">
+            <elementDefinition Id="3b9a5583-20eb-4713-a490-7c7ba7c994c2" />
+            <flowNodeTargets>
+              <controlFlow Id="e253c6c8-ae2e-4eaf-a3d5-40606c2c9194" isLeaf="false">
+                <activityFinalNodeMoniker Id="687b897d-a016-43a5-b22b-8902e411d7da" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="29094b53-5a9c-4587-8be7-9cd49cf03d98" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <mergeNode Id="f7e47c08-c98e-47fc-bf2b-964336033145" name="Merge1" isLeaf="false">
+            <elementDefinition Id="410b2c54-0f20-4167-9e7b-eab3dba8796a" />
+          </mergeNode>
+          <opaqueAction Id="ffa40000-f69b-4078-a3c7-5a2c7eb6cb2f" name="User login  in  the application" isLeaf="false">
+            <elementDefinition Id="a0e6f285-5ab9-4aad-81dc-4180375b5c01" />
+            <flowNodeTargets>
+              <controlFlow Id="b288c1eb-8e05-4e59-8d31-9eb3dd666537" isLeaf="false">
+                <opaqueActionMoniker Id="b050f359-2838-4d24-871b-807e6f9b36ee" LastKnownName="User get in task  module" />
+                <elementDefinition Id="afe97428-aa7e-4d24-b708-d1ed8fd8c9fe" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="b050f359-2838-4d24-871b-807e6f9b36ee" name="User get in task  module" isLeaf="false">
+            <elementDefinition Id="d977d963-1a51-45b7-ab8a-11051a2f52d2" />
+            <flowNodeTargets>
+              <controlFlow Id="881e15db-f2c3-443e-a19a-0bdc67badf93" isLeaf="false">
+                <opaqueActionMoniker Id="3ec31e07-23df-4e99-ab48-a940ce327466" LastKnownName="User creates a task" />
+                <elementDefinition Id="8e6ad936-0ed8-45a7-a4c7-59119a8251ef" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="687b897d-a016-43a5-b22b-8902e411d7da" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="2db683a2-c39c-4916-8287-25966a64fd89" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="c61486cd-bd49-451b-8f98-8aa0592f7daa" name="TeamNetDiagrams">
+    <elementDefinition Id="6a1b7de6-a8a3-46d9-a656-541831601aab" />
+  </package>
+</activityRootModel>

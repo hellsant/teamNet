@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A451DBC3-DB52-4DCE-ACED-94CE26A1CA82}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TeamNetDB</RootNamespace>
+    <AssemblyName>TeamNetDB</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cleaner\OrientDataBaseCleaner.cs" />
+    <Compile Include="Cleaner\IDataBaseCleaner.cs" />
+    <Compile Include="ConnectionDatabase\ConnectionBinaryOrientDB.cs" />
+    <Compile Include="ConnectionDatabase\ConnectionData.cs" />
+    <Compile Include="ConnectionDatabase\CreateConnection.cs" />
+    <Compile Include="ConnectionDatabase\IConnectionDB.cs" />
+    <Compile Include="DataProvider.cs" />
+    <Compile Include="GroupTasksBrowser.cs" />
+    <Compile Include="Model\Interfaces\IGroupManagement.cs" />
+    <Compile Include="Model\Interfaces\IGroupData.cs" />
+    <Compile Include="Model\Interfaces\IGroup.cs" />
+    <Compile Include="Model\Interfaces\INotifies.cs" />
+    <Compile Include="Model\Interfaces\IReference.cs" />
+    <Compile Include="Model\Interfaces\IRequestForReview.cs" />
+    <Compile Include="Model\Interfaces\IPublication.cs" />
+    <Compile Include="Model\Interfaces\IRoleInGroup.cs" />
+    <Compile Include="Model\Interfaces\IRoleInGroupData.cs" />
+    <Compile Include="Model\Interfaces\IRole.cs" />
+    <Compile Include="Model\OrientImplementation\GroupManagement.cs" />
+    <Compile Include="Model\OrientImplementation\GroupData.cs" />
+    <Compile Include="Model\OrientImplementation\Group.cs" />
+    <Compile Include="Model\OrientImplementation\Notifies.cs" />
+    <Compile Include="Model\OrientImplementation\Publication.cs" />
+    <Compile Include="Model\OrientImplementation\PublicationData.cs" />
+    <Compile Include="Model\OrientImplementation\Reference.cs" />
+    <Compile Include="Model\OrientImplementation\RequestForReview.cs" />
+    <Compile Include="Model\OrientImplementation\RoleInGroup.cs" />
+    <Compile Include="Model\OrientImplementation\RoleInGroupData.cs" />
+    <Compile Include="Model\OrientImplementation\Role.cs" />
+    <Compile Include="Model\OrientImplementation\SuggestionData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repository\OrientImplementation\CompetencyLevelRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\GroupManagementRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\GroupRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\ReferenceRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\RequestForReviewRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\PublicationRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\RoleInGroupRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\RoleRepository.cs" />
+    <Compile Include="Repository\UnitOfWorkTest.cs" />
+    <Compile Include="Security\CredentialsRetriever.cs" />
+    <Compile Include="Security\Rinjdael.cs" />
+    <Compile Include="Model\Interfaces\IArea.cs" />
+    <Compile Include="Model\Interfaces\ICompetency.cs" />
+    <Compile Include="Model\Interfaces\ICompetencyLevel.cs" />
+    <Compile Include="Model\Interfaces\IEntity.cs" />
+    <Compile Include="Model\Interfaces\IEvaluator.cs" />
+    <Compile Include="Model\Interfaces\IExpected.cs" />
+    <Compile Include="Model\Interfaces\ILevel.cs" />
+    <Compile Include="Model\Interfaces\ISuggestionData.cs" />
+    <Compile Include="Model\Interfaces\ITime.cs" />
+    <Compile Include="Model\Interfaces\IResult.cs" />
+    <Compile Include="Model\Interfaces\ISuggestion.cs" />
+    <Compile Include="Model\Interfaces\ITask.cs" />
+    <Compile Include="Model\Interfaces\IUser.cs" />
+    <Compile Include="Model\OrientImplementation\Area.cs" />
+    <Compile Include="Model\OrientImplementation\Competency.cs" />
+    <Compile Include="Model\OrientImplementation\CompetencyLevel.cs" />
+    <Compile Include="Model\OrientImplementation\Evaluator.cs" />
+    <Compile Include="Model\OrientImplementation\Expected.cs" />
+    <Compile Include="Model\OrientImplementation\Level.cs" />
+    <Compile Include="Model\OrientImplementation\Result360.cs" />
+    <Compile Include="Model\OrientImplementation\Suggestion.cs" />
+    <Compile Include="Model\OrientImplementation\Task.cs" />
+    <Compile Include="Model\OrientImplementation\Time.cs" />
+    <Compile Include="Repository\OrientImplementation\TimeRepository.cs" />
+    <Compile Include="Model\OrientImplementation\User.cs" />
+    <Compile Include="Model\EdgesSuggestion.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DeleteManager.cs" />
+    <Compile Include="Repository\IDeleteable.cs" />
+    <Compile Include="Repository\IEntityBase.cs" />
+    <Compile Include="Repository\Interfaces\IOrientTransactionable.cs" />
+    <Compile Include="Repository\Interfaces\IRepository.cs" />
+    <Compile Include="Repository\Interfaces\ITransaction.cs" />
+    <Compile Include="Repository\OrientImplementation\CategoyRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\CompetencyRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\EvaluatorRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\ExpectedRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\LevelRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\ResultRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\SuggestionRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\TaskRepository.cs" />
+    <Compile Include="Repository\OrientImplementation\Transaction.cs" />
+    <Compile Include="Repository\OrientImplementation\UserRepository.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Security\IEncryptor.cs" />
+    <Compile Include="Security\LoginManager.cs" />
+    <Compile Include="SpecificsTask.cs" />
+    <Compile Include="TransactionToDatabase\BuilderString.cs" />
+    <Compile Include="TransactionToDatabase\ConditionValue.cs" />
+    <Compile Include="TransactionToDatabase\EdgesName.cs" />
+    <Compile Include="TransactionToDatabase\ITransaction.cs" />
+    <Compile Include="TransactionToDatabase\Role.cs" />
+    <Compile Include="TransactionToDatabase\State.cs" />
+    <Compile Include="TransactionToDatabase\TransactionOrientDBBinary\TransactionBinary.cs" />
+    <Compile Include="TransactionToDatabase\VertexConnector.cs" />
+    <Compile Include="TransactionToDatabase\VertexName.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orient.Client\Orient.Client.csproj">
+      <Project>{224db9ba-3ba5-4955-b147-e540e1f270da}</Project>
+      <Name>Orient.Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repository\Suggestion\" />
+    <Folder Include="Security\TransactionToDatabase\TransactionOrientDBBinary\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

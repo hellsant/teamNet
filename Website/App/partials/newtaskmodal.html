@@ -1,0 +1,138 @@
+﻿<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content" ng-controller="TasksCtrl">
+            <div class="modal-header">
+                <h4 class="modal-title">Task Information</h4>
+            </div>
+            <div class="modal-body">
+                <form name="newTaskForm">
+                    <ng-form name="newTaskDialog" class="form-horizontal" novalidate role="form" style="width: 100%">
+                        <table>
+                            <tr>
+                                <td class="form-label">
+                                    <label class="control-label" for="name">* Name</label>
+                                </td>
+                                <td class="form-input">
+                                    <input type="text" class="form-control" name="name" ng-model="newtask.name" maxlength="35" required>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="form-label">
+                                    <label for="taskDescription" class="control-label col-xs-2">* Description</label>
+                                </td>
+                                <td class="form-input">
+                                    <textarea class="form-control" maxlength="200" style="height: 120px" id="taskDescription" ng-model="newtask.description" required></textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="form-label">
+                                    <label for="initialdate" class="control-label col-xs-2">* Initial Date</label>
+                                </td>
+
+                                <td class="form-input">
+                                    <input type="date" name="initialdate" ng-model="newtask.initialDate" required>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="form-label">
+                                    <label for="finaldate" class="control-label col-xs-2">* Final Date</label>
+                                </td>
+
+                                <td class="form-input">
+                                    <input type="date" name="finaldate" ng-model="newtask.finalDate" required>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="form-label">
+                                    <label for="assignToPoint" class="control-label col-xs-2">* Assign To Point</label>
+                                </td>
+
+                                <td class="form-input">
+                                    <select name="points" ng-model="newtask.point">
+                                        <option>Code Review</option>
+                                        <option>Unit Tests</option>
+                                    </select>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="form-label">
+                                    <label for="reviewer" class="control-label col-xs-2">* Reviewer</label>
+                                </td>
+
+                                <td class="form-input">
+                                    <input type="text" class="form-control" name="reviewer" ng-model="newtask.reviewer" required>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="form-label">
+                                    <label for="lastScore" class="control-label col-xs-3">The Last Score is: 3</label>
+                                </td>
+
+                                <td class="form-input">
+                                    <label for="nextLevelScore" class="control-label col-xs-4">The Next Level Score is: 4</label>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="form-label">
+                                    <label for="finished" class="control-label col-xs-2">* Final Product</label>
+                                </td>
+
+                                <td class="form-input">
+                                    <input type="text" class="form-control" maxlength=40 id="verifyFinished" ng-model="newtask.product" required>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="form-label">
+                                    <label for="taskScore" class="control-label col-xs-2">* Score</label>
+                                </td>
+
+                                <td class="form-input">
+                                    <input class="form-control" min="1" max="5" id="taskScore" type="number" style="width: 80px" ng-model="newtask.score" required>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="form-label">
+                                    <label for="flatOneCheckbox" class="control-label col-xs-2">Mark as Suggestion</label>
+                                </td>
+                                <td class="form-input">
+                                    <div class="flatCheckbox">
+                                        <input type="checkbox" value="1" id="flatOneCheckbox" ng-model="newtask.isSuggestion" />
+                                        <label for="flatOneCheckbox"></label>
+                                        <div></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </ng-form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                <button type="submit" class="btn btn-primary" ng-click="create()">Create</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function sample($scope, $filter) {
+            $scope.dates2 = { startDate: moment('2013-09-20'), endDate: moment('2013-09-25') };
+            $scope.dates3 = { startDate: moment(), endDate: moment().add(1, 'day') };
+            $scope.dates4 = { startDate: moment().subtract(1, 'day'), endDate: moment().subtract(1, 'day') };
+        }
+    </script>
+</div>

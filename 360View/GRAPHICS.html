@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>360 Results</title>
+    <link rel="stylesheet" href="css" />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/ng-table.css" />
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+
+</head>
+<body ng-app="main">
+    <div class="container">
+        <h3>360 RESULTS</h3>
+        <div ng-controller="MainController">
+            <div class="navbar navbar-default ">
+                <ul class="nav navbar-nav">
+                    <li ng-repeat="menu in menus" ng-class="{dropdown: menu.menus}">
+                        <a href="{{menu.action}}" ng-class="{'dropdown-toggle': menu.menus}" data-toggle="dropdown">{{menu.title}} <span class="caret"></span></a>
+                        <ul ng-if="menu.menus" class="dropdown-menu">
+                            <li ng-repeat="submenu in menu.menus">
+                                <a href="{{submenu.action}}">{{submenu.title}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="placeholder" style="width:600px;height:300px;"></div>
+
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/ng-table.js"></script>
+    <!--<script src="Scripts/jquery-1.9.0.min.js"></script>-->
+    <script language="javascript" type="text/javascript" src="Scripts/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="Scripts/jquery.flot.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/script.js"></script>
+    <script language="javascript" type="text/javascript">
+
+        $(document).ready(function(){
+
+            $.ajax({
+                //url: "Scripts/barLine.json",
+                url: "http://localhost:10189/api/result",
+                type: "GET",
+                dataType: "json",
+                success: onDataReceived
+
+            });
+
+            function onDataReceived(series) {
+                // Extract the first coordinate pair; jQuery has parsed it, so
+                // the data is now just an ordinary JavaScript object
+                //alert("si isi isi");
+                //var namePoint1 = "pointLuchenxio";
+                //var namePoint2 = "pointMachenxio";
+                //var namePoint3 = "pointRulenxio";
+                //var namePoint4 = "pointRomantic";
+                //var namePoint5 = "pointSexirulenxio";
+
+                //var dataManager = [];
+                //var dataTeam = [];
+                //var dataSelf = [];
+                //var dataAverage = [];
+                //dataManager.push([0, 0]);
+                //dataTeam.push([0, 0]);
+                //dataSelf.push([0, 0]);
+                //dataAverage.push([0, 0]);
+
+                var plotarea = $("#placeholder");
+                var nombresito = series.name;
+                var listPoints = series.points;
+                var dataValues = [[]];
+                dataValues[0] = [];
+                dataValues[1] = [];
+                dataValues[2] = [];
+
+                $.each(series.points, function (position, point) {
+                    var positionPoint = position;
+                    //alert(positionPoint);
+                    var namePoint = point.name;
+
+                    $.each(point.results, function (positionResult, result) {
+                        //var resEvaluator = result.name;
+                        var resValue = result.value;
+                        //alert(resValue);
+                        dataValues[positionResult].push(position, resValue);
+                        alert(dataValues[0]);
+                    });
+                });
+
+                var res = dataValues[0];
+                //alert("desde aqui");
+                $.each(res, function (pos) {
+                    //var resEvaluator = result.name;
+                    var val = res[pos];
+                    //alert(val);
+                });
+
+                var res2 = [[1, 2], [2, 3], [3, 4], [5, 3]];
+                //alert("prueba");
+                $.each(res2, function (pos) {
+                    //var resEvaluator = result.name;
+                    var val = res2[pos];
+                    //alert(val);
+                });
+
+
+                //$.plot($("#placeholder"), dataValues[0]);
+                $.plot($("#placeholder"), [
+                {
+                    data: [[1,2],[2,3],[3,4],[5,3]],//res,
+                    label: "Manager",
+                    lines: { show: true, steps: false }
+                }
+                ]
+                );
+
+                //var dataBar=series.dataBar;
+                //var dataLine=series.dataLine;
+                //var dataExample = [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]];
+                //$.plot(plotarea,[
+
+                //    $.each(dataValues, function (positionvalue) {
+                //            data: dataManager,
+                //            label: "Manager",
+                //            lines: { show: true, steps: false }   
+                //     });
+
+                //   ],
+                
+                //    xaxis: {
+                //        ticks: [[0, '0'], [1, namePoint1], [2, namePoint2], [3, namePoint3], [4, namePoint4], [5, namePoint5]]
+                //    }
+                //}
+                //);
+
+
+                //$.plot(plotarea, [
+                //{
+                //    data: dataManager,
+                //    label: "Manager",
+                //    lines: { show: true, steps: false }
+                //},
+                //{
+                //    data: dataTeam,
+                //    label: "Team",
+                //    lines: { show: true, steps: false }
+                //},
+                //{
+                //    data: dataSelf,
+                //    label: "Self",
+                //    lines: { show: true, steps: false }
+                //},
+                //{
+                //    data: dataAverage,
+                //    label: "Average",
+                //    lines: { show: true, steps: false }
+                //}
+                //],
+                //{
+                //    xaxis: {
+                //        ticks: [[0, '0'], [1, namePoint1], [2, namePoint2], [3, namePoint3], [4, namePoint4], [5, namePoint5]]
+                //    }
+                //}
+                //);
+            }
+
+    });
+
+    </script>
+</body>
+</html>
+

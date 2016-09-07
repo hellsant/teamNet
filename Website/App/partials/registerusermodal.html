@@ -1,0 +1,73 @@
+﻿<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Register New User</h4>
+    </div>
+    <div class="modal-body">
+        <div ng-form="registerUserForm" class="form-horizontal">
+
+            <div class="form-group">
+                <label for="newUserName" class="control-label col-md-3"> Name&nbsp* </label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="name" name="userName" ng-model="newUser.name" ng-required="true">
+                    <span class="error" style="font-style:italic; color:red" ng-show="registerUserForm.userName.$error.required && registerUserForm.userName.$dirty">
+                        You have to enter a name.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="newUserLastname" class="control-label col-md-3"> LastName&nbsp*</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="lastname" name="userLastname" ng-model="newUser.lastname" ng-required="true">
+                    <span class="error" style="font-style:italic; color:red" ng-show="registerUserForm.userLastname.$error.required && registerUserForm.userLastname.$dirty">
+                        You have to enter a lastname.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="newUserEmail" class="control-label col-md-3"> Email&nbsp*</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="newemail" name="userEmail" ng-model="newUser.email" ng-required="true"
+                           ng-pattern="/^(.+\@.+\..+)$/" ng-blur="verifyFormat()">
+                    <span class="error" style="font-style:italic; color:red" ng-show="emailExistent"> This email is existent. </span>
+                    <span class="error" style="font-style:italic; color:red" ng-show="registerUserForm.userEmail.$error.pattern"> Email format Invalid. </span>
+                    <span class="error" style="font-style:italic; color:red" ng-show="registerUserForm.userEmail.$error.required && registerUserForm.userEmail.$dirty">
+                        You have to enter an email.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="newUserPassword" class="control-label col-md-3"> Password&nbsp*</label>
+                <div class="col-md-8">
+                    <input type="password" id="newpassword" class="form-control" name="userPassword" ng-model="newUser.password" ng-minlength="8" ng-required="true">
+                    <span class="error" style="font-style:italic; color:red" ng-show="registerUserForm.userPassword.$error.required && registerUserForm.userPassword.$dirty">
+                        You have to enter a password.
+                    </span>
+                    <span class="error" style="font-style:italic; color:red" ng-show="registerUserForm.userPassword.$error.minlength">
+                        The number of characters must be more than eight.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="newUserConfirmPassword" class="control-label col-md-3"> Confirm&nbspPassword&nbsp*</label>
+                <div class="col-md-8">
+                    <input type="password" id="userConfirmPassword" class="form-control" name="userConfirmPassword" ng-model="newUser.confirmpassword"
+                           ng-required="true" ng-blur="comparePasswords()">
+                    <span class="error" style="font-style:italic; color:red" ng-show="passwordsNotEquals"> The passwords aren't equals. </span>
+                    <span class="error" style="font-style:italic; color:red" ng-show="registerUserForm.userConfirmPassword.$error.required && registerUserForm.userConfirmPassword.$dirty">
+                        You have to confirm the password.
+                    </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-2"></div>
+                <button type="button" class="btn btn-default span2" ng-click="cancel()"> Cancel </button>
+                <button type="submit" class="btn btn-primary span2" ng-click="saveUser()"> Save </button>
+            </div>
+        </div>
+    </div>
+    
+ </div>

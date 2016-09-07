@@ -1,0 +1,7 @@
+{"state_message" : {
+    "diffsuggested" : "Your score is too low on this point compared to what you need, you should probably work on it",
+    "valuesuggested" : "This point has a high relevance for the level you are at, you should probably work on it",
+    "both" : "This point has high relevance for your level and your score is too low, you should work on it",
+    "selected" : "You have chosen to work on this point"
+}
+}

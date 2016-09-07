@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="TeamNet">
+<head>
+    <!-- start: Meta -->
+    <meta charset="utf-8" />
+    <title>Results</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="keyword" content="" />
+    <!-- end: Meta -->
+    <!-- start: Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- end: Mobile Specific -->
+    <!-- start: CSS -->
+    <link href="../../Styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../Styles/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="../../Styles/style.min.css" rel="stylesheet" />
+    <link href="../../Styles/style-responsive.min.css" rel="stylesheet" />
+    <link href="../../Styles/retina.css" rel="stylesheet" />
+    <link href="../../Styles/modal-styles.css" rel="stylesheet" />
+    <link href="../../Styles/ng-table.css" rel="stylesheet" />
+    <link href="../../Styles/results.css" rel="stylesheet" />
+    <link href="../../css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../css/style-graphic.css" rel="stylesheet" />
+    <!-- end: CSS -->
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link id="ie-style" href="css/ie.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE 9]>
+        <link id="ie9style" href="css/ie9.css" rel="stylesheet">
+    <![endif]-->
+    <!-- start: Favicon and Touch Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+    <link rel="shortcut icon" href="ico/favicon.png" />
+    <!-- end: Favicon and Touch Icons -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body ng-controller="TableController">
+    <!-- start: Header -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a id="main-menu-toggle" class="hidden-phone open"><i class="icon-reorder"></i></a>
+                <div class="row-fluid">
+                    <a class="brand span2" href="index.html"><span>{{config.VIEW.TITLE}}</span></a>
+                </div>
+                <!-- start: Header Menu -->
+                <div class="nav-no-collapse header-nav">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
+                                <div class="avatar"><img ng-src="{{config.VIEW.AVATAR_SRC}}" alt="Avatar" /></div>
+                                <div class="user">
+                                    <span class="name">{{username}} {{lastname}}</span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-menu-title">
+                                </li>
+                                <li><a href="../profile/profile.html"><i class="icon-user"></i> Profile</a></li>
+                                <li><a href="../login/login.html"><i class="icon-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                        <!-- end: User Dropdown -->
+                    </ul>
+                </div>
+                <!-- end: Header Menu -->
+            </div>
+        </div>
+    </div>
+    <!-- start: Header -->
+    <div class="container-fluid-full">
+        <div class="row-fluid">
+            <!-- start: Main Menu -->
+            <div id="sidebar-left" class="span2">
+                <div class="nav-collapse sidebar-nav">
+                    <ul class="nav nav-tabs nav-stacked main-menu">
+                        <li ng-repeat="menu in menus">
+                            <a ng-href="{{menu.href}}"><i class="{{menu.icon}}"></i><span class="hidden-tablet"> {{menu.title}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- end: Main Menu -->
+            <!-- start: Content -->
+            <div id="content" class="span10">
+                <div class="row-fluid">
+                    <div class="box span12" ontablet="span12" ondesktop="span12">
+                        <div class="box-header">
+                            <h2><i class="icon-list"></i>{{config.VIEW.MAIN_TITLE}}</h2>
+                            <div class="box-icon" ng-controller="TasksModalCtrl">
+                                <a href="#"><i class="icon-list-alt" ng-click="open()"></i></a>
+                                <a href="#" class="btn-minimize"><i class="icon-chevron-up"></i></a>
+                            </div>
+                        </div>
+                        <!-- start: 360 Results-->
+                        <div class="box-content clearfix">
+                            <h1 class="text-center">{{config.VIEW.TABLE_TITLE}}</h1>
+                            <!-- start: tableController show results-->
+                            <div>
+                                <!-- start: tabset of Table-->
+                                <tabset>
+                                    <!-- start: first tab of Table-->
+                                    <tab class="col-2">
+                                        <!-- start: tab-heading for table-->
+                                        <tab-heading class="text-tab" tooltip="{{config.VIEW.FIRST_TAB_TOOLTIP}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                            <i class="glyphicon glyphicon-list-alt"></i> {{config.VIEW.FIRST_TAB_TITLE}}
+                                            <div class="btn-group">
+                                                <button class="btn btn-primary" ng-click="switchedGroup(true)"><i class="icon-plus-sign"></i></button>
+                                                <button class="btn btn-primary" ng-click="switchedGroup(false)"><i class="icon-minus-sign"></i></button>
+                                            </div>
+                                        </tab-heading>
+                                        <!-- end: tab-heading for table-->
+                                        <!-- start: configuration of table showing the results-->
+                                        <div>
+                                            <table ng-table="tableParams" class="table">
+                                                <tbody ng-repeat="competency in competencies">
+                                                    <!-- start: first tr -->
+                                                    <tr class="ng-table-group" ng-init="initialize(competency)" ng-attr-title="{{competency.message}}" ng-dblclick="openModal(competency)">
+                                                        <td colspan="{{$columns.length}}">
+                                                            <!-- start: name competencies-->
+                                                            <div class="col-md-2">
+                                                                <a ng-click="competency.$hideRows = !competency.$hideRows">
+                                                                    <span class="glyphicon" ng-class="{ 'glyphicon-chevron-right': !competency.$hideRows, 'glyphicon-chevron-down': competency.$hideRows }"></span>
+                                                                    <strong>{{ competency.name }}</strong>
+                                                                </a>
+                                                            </div>
+                                                            <!-- end: name competencies-->
+                                                            <!-- start: result of average -->
+                                                            <div class="col-md-1" ng-show="!competency.$hideRows">
+                                                                <span><b>AVG</b></span>
+                                                            </div>
+                                                            <!-- start: progress bar-->
+                                                            <div class="col-md-3" ng-init="progressAvg(competency, 0)" ng-show="!competency.$hideRows">
+                                                                <progress max="5">
+                                                                    <bar class="progress-striped active " ng-repeat="bar in competency.competencyStacked" value="bar.value" type="{{bar.type}}">
+                                                                        <span style="color:black; white-space:nowrap; font-size:15px">
+                                                                            <b ng-hide="!bar.show">{{competency.average}} ({{bar.percentage}}%)</b>
+                                                                        </span>
+                                                                    </bar>
+                                                                </progress>
+                                                            </div>
+                                                            <!-- end: progress bar-->
+                                                            <!-- end: result of average-->
+                                                            <!-- start: expected result for level-->
+                                                            <div style="text-align:center" class="col-md-2" ng-show="!competency.$hideRows">
+                                                                <span class="sizeValue"><b>{{competency.expectedAvg}}</b></span>
+                                                            </div>
+                                                            <!-- end: expected result for level-->
+                                                            <!-- start: required for result competency-->
+                                                            <div style="text-align:center" class="col-md-3" ng-show="!competency.$hideRows">
+                                                                <span ng-class="{'glyphicon glyphicon-circle-arrow-up' : competency.needAvg <= 0, 'glyphicon glyphicon-circle-arrow-down' : competency.needAvg > 0}"><b class="sizeValue"> {{competency.needAvg}}</b></span>
+                                                            </div>
+                                                            <!-- start: required for result competency-->
+                                                        </td>
+
+                                                    </tr>
+                                                    <!-- end: first tr -->
+                                                    <!-- start: second tr -->
+                                                    <tr ng-hide="!competency.$hideRows" ng-repeat="result in competency.results">
+                                                        <!-- start: name evaluator -->
+                                                        <td data-title="{{config.VIEW.FIRST_COLUMN}}" header-class="pull-center" class="text-center col-md-3">
+                                                            <span ng-bind="result.evaluator" />
+                                                        </td>
+                                                        <!-- end: name evaluator -->
+                                                        <!-- start: results of evaluator -->
+                                                        <td header-class="pull-center" data-title="{{config.VIEW.SECOND_COLUMN}}" class="text-center col-md-3">
+                                                            <!-- start: progress bar-->
+                                                            <div ng-init="progressEvaluator(result, competency, 0)">
+                                                                <progress max="5">
+                                                                    <bar class="progress-striped active" ng-repeat="bar in result.resultStacked" value="bar.value" type="{{bar.type}}">
+                                                                        <span style="color:black">
+                                                                            <b ng-hide="!bar.show">{{bar.value}}({{bar.percentage}}%)</b>
+                                                                        </span>
+                                                                    </bar>
+                                                                </progress>
+                                                            </div>
+                                                            <!-- end: progress bar-->
+                                                        </td>
+                                                        <!-- end: results of evaluator -->
+                                                        <!-- start: expected for result -->
+                                                        <td data-title="{{config.VIEW.THIRD_COLUMN}}" header-class="pull-center" class="text-center col-md-3">
+                                                            <span ng-bind="result.expected" />
+                                                        </td>
+                                                        <!-- end: expected for result -->
+                                                        <!-- start: required for result -->
+                                                        <td header-class="pull-center" data-title="{{config.VIEW.FOURTH_COLUMN}}" class="text-center col-md-3">
+                                                            <span ng-class="{'glyphicon glyphicon-circle-arrow-up' : result.need <= 0, 'glyphicon glyphicon-circle-arrow-down' : result.need > 0}">
+                                                                <b style="font-size: 14px;">{{result.need}}</b>
+                                                            </span>
+                                                        </td>
+                                                        <!-- end: required for result -->
+                                                    </tr>
+                                                    <!-- start: second tr -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- end: configuration of table showing the results-->
+                                    </tab>
+                                    <!-- end: first tabset of Table-->
+                                    <!-- start: second tab of Graphic-->
+                                    <tab class="col-2 ui-resizable">
+                                        <!-- start: tab-heading for Graphic-->
+                                        <tab-heading class="text-tab" tooltip="{{config.VIEW.SECOND_TAB_TOOLTIP}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                            <i class="glyphicon glyphicon-signal"></i> Graphic
+                                        </tab-heading>
+                                        <!-- end: tab-heading for Graphic-->
+                                        <div>
+                                            <div class="col-md-10">
+                                                <div class="demo-container" style="width:100%; padding: 10px; position: relative;overflow-x:scroll">
+                                                    <div id="placeholder" class="demo-placeholder"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p id="choices" class="demo-container-panel">
+                                                </p>
+                                                <div class="demo-container-panel">
+                                                    <p>
+                                                        <label><input id="enablePosition" type="checkbox" checked="checked" />Mouse position</label>
+                                                        <span id="hoverdata"></span>
+                                                        <span id="clickdata"></span>
+                                                    </p>
+                                                    <p><label><input id="enableTooltip" type="checkbox" checked="checked" />Enable tooltip</label></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </tab>
+                                    <!-- end: second tab of Graphic-->
+                                    <!-- start: tab-heading for button dropdown-->
+                                    <tab-heading role="presentation" class="btn-group col-md-offset-6">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="disabled">
+                                            {{level}} <span class="caret"></span>
+                                        </button>
+                                        <!-- start: ul of dropdown-->
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li data-toggle="tab" ng-repeat="submenu in menuLevels">
+                                                <a role="menuitem" ng-click="selectLevel($index)">{{submenu}}</a>
+                                            </li>
+                                        </ul>
+                                        <!-- end: ul of dropdown-->
+                                    </tab-heading>
+                                    <!-- end: tab-heading for dropdown-->
+                                </tabset>
+                                <!-- end: tabset of Table-->
+                            </div>
+                        </div>
+                    </div><!--/span-->
+                </div>
+                <!-- end: Content -->
+            </div><!--/fluid-row-->
+            <div class="modal hide fade" id="myModal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>Settings</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Here settings can be configured...</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary">Save changes</a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <footer>
+                <p>
+                    <span style="text-align:left;float:left">&copy; 2014 <a href="http://www.jalasoft.com" alt="Bootstrap Themes">Jalasoft</a></span>
+                </p>
+            </footer>
+        </div><!--/.fluid-container-->
+        <!-- start: JavaScript-->
+        <script src="../lib/angular.min.js"></script>
+        <script src="../lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+        <script src="../lib/jquery-2.1.1.min.js"></script>
+        <script src="../lib/jquery-migrate-1.2.1.min.js"></script>
+        <script src="../lib/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="../lib/jquery.ui.touch-punch.js"></script>
+        <script src="../lib/modernizr.js"></script>
+        <script src="../lib/bootstrap.min.js"></script>
+        <script src="../lib/jquery.cookie.js"></script>
+        <script src='../lib/fullcalendar.min.js'></script>
+        <script src='../lib/jquery.dataTables.min.js'></script>
+        <script src="../lib/excanvas.js"></script>
+        <script src="../lib/jquery.chosen.min.js"></script>
+        <script src="../lib/jquery.uniform.min.js"></script>
+        <script src="../lib/jquery.cleditor.min.js"></script>
+        <script src="../lib/jquery.noty.js"></script>
+        <script src="../lib/jquery.elfinder.min.js"></script>
+        <script src="../lib/jquery.raty.min.js"></script>
+        <script src="../lib/jquery.iphone.toggle.js"></script>
+        <script src="../lib/jquery.uploadify-3.1.min.js"></script>
+        <script src="../lib/jquery.gritter.min.js"></script>
+        <script src="../lib/jquery.imagesloaded.js"></script>
+        <script src="../lib/jquery.masonry.min.js"></script>
+        <script src="../lib/jquery.knob.modified.js"></script>
+        <script src="../lib/jquery.sparkline.min.js"></script>
+        <script src="../lib/counter.min.js"></script>
+        <script src="../lib/raphael.2.1.0.min.js"></script>
+        <script src="../lib/justgage.1.0.1.min.js"></script>
+        <script src="../lib/jquery.autosize.min.js"></script>
+        <script src="../lib/retina.js"></script>
+        <script src="../lib/jquery.placeholder.min.js"></script>
+        <script src="../lib/wizard.min.js"></script>
+        <script src="../lib/core.min.js"></script>
+        <script src="../lib/charts.min.js"></script>
+        <script src="../lib/custom.min.js"></script>
+        <script src="../lib/jquery.nestable.js"></script>
+        <script src="../lib/ng-table.js"></script>
+        <script src="../lib/jquery.flot.min.js"></script>
+        <script src="../lib/jquery.flot.js"></script>
+        <script src="../lib/jquery.flot.resize.js"></script>
+        <script src="../lib/jquery.flot.resize.min.js"></script>
+        <script src="../lib/log4javascript.js"></script>
+        <script src="../../Config/config.js"></script>
+        <script src="../service_connection/remoteResourse.js"></script>
+        <script src="resultsCtrl.js"></script>
+        <!-- end: JavaScript-->
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<div class="modal-content container">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="cancel()">&times;</button>
+        <h4 class="modal-title text-center">{{config.VIEW.REQUEST_TITLE}}</h4>
+    </div>
+    <div class="modal-body">
+        <div ng-form="requestForm" class="form-horizontal"> 
+            <div class="form-group">
+                <input type="text" class="form-control col-md-8" placeholder="{{config.VIEW.COMMENT_TITLE}}" ng-model="commentRequester">
+            </div>
+            </br>
+            <div class="form-group">
+                <input type="text" name="nick" class="form-control col-md-8" placeholder="{{config.VIEW.REQUESTER_NAME_URL}}" ng-model="nameRef" ng-required="true" ng-maxlength="{{config.VIEW.MAX_LENGTH}}"/>
+                <span class="error" style="font-style:italic; color:orange" ng-show="requestForm.nick.$error.required">
+                    {{config.ERRORS.NAME}}
+                </span>
+                <span class="error" style="font-style:italic; color:orange" ng-show="requestForm.nick.$error.maxlength">
+                    {{config.ERRORS.NAME_LONG}}
+                </span><br>
+            </div>
+            </br>
+            <div class="form-group">
+                <input type="url" name="url" placeholder="{{config.VIEW.REQUESTER_REFERENCE}}" class="form-control col-md-8" ng-model="ref" ng-required="true" data-tabindex="2" />
+                <span class="error" style="font-style:italic; color:orange" ng-show="requestForm.url.$error.required">
+                    {{config.ERRORS.REFERENCE}}
+                </span>
+                <span class="error" style="font-style:italic; color:red" ng-show="requestForm.url.$error.url">
+                    {{config.ERRORS.INVALID_URL}}
+                </span>
+                <i class="pull-right glyphicon glyphicon-plus-sign col-md-2" style="color:green" ng-click="addLink(nameRef, ref)"></i>
+                <ul class=" form-inline">
+                    <li ng-repeat="ref in references">
+                        <a ng-href="{{ref.url}}" target="_blank" ng-show="{{ref.delete}}">{{ ref.name }}</a>
+                        <i class="glyphicon glyphicon-remove-sign" style="color:red" ng-click="removeRef($index, ref)"></i>
+                    </li>
+                    <!----onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;"-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div>
+        <h2>{{config.VIEW.REQUESTER_MESSAGE}}: {{nameReviewer}}</h2>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-disabled="thereAreReferences" ng-click="send()">{{config.VIEW.SEND_TITLE}}</button>
+        <button class="btn btn-warning" ng-click="cancel()">{{config.VIEW.CANCEL_TITLE}}</button>
+    </div>
+</div>
